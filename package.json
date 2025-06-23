@@ -81,6 +81,7 @@
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4.1.3",
     "isomorphic-git": "^1.30.1",
+    "pnpm": "10.12.2",
     "postcss": "^8.5.3",
     "postcss-selector-not": "^8.0.1",
     "storybook-css-modules": "^1.0.8",
