@@ -79,10 +79,10 @@
     "velite": "^0.2.2",
     "webpack": "^5.99.5",
     "postcss": "^8.5.3",
-    "postcss-selector-not": "^8.0.1"
+    "postcss-selector-not": "^8.0.1",
+    "wrangler": "^4.11.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "wrangler": "^4.11.1"
+    "@biomejs/biome": "^1.9.4"
   }
 }

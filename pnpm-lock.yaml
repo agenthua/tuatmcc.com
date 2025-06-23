@@ -182,13 +182,13 @@ importers:
       webpack:
         specifier: ^5.99.5
         version: 5.99.7(esbuild@0.25.3)
+      wrangler:
+        specifier: ^4.11.1
+        version: 4.13.2
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.9.4
         version: 1.9.4
-      wrangler:
-        specifier: ^4.11.1
-        version: 4.13.2
 
 packages:
 
