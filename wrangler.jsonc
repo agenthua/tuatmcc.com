@@ -4,5 +4,8 @@
   "assets": {
     "directory": "./out",
     "not_found_handling": "single-page-application",
-  }
+  },
+  "build": {
+    "command": "npm i -g pnpm && pnpm run build",
+  },
 }
