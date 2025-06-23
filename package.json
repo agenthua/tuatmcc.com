@@ -92,5 +92,8 @@
   "optionalDependencies": {
     "@next/env": "^15.2.4",
     "webpack": "^5.99.5"
+  },
+  "engines": {
+    "pnpm": ">=10.12.1"
   }
 }
