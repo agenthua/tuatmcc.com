@@ -1,5 +1,3 @@
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',

@@ -16,8 +16,12 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             nodejs-slim
-            bun
+            pnpm
           ];
+
+          shellHook = ''
+            node --version | sed 's/v//' > .node-version
+          '';
         };
       };
     };
