@@ -18,6 +18,10 @@
             nodejs-slim
             pnpm
           ];
+
+          shellHook = ''
+            node --version | sed 's/v//' > .node-version
+          '';
         };
       };
     };
