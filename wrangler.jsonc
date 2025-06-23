@@ -3,18 +3,18 @@
   "compatibility_date": "2025-06-23",
   "assets": {
     "directory": "./out",
-    "not_found_handling": "single-page-application",
+    "not_found_handling": "single-page-application"
   },
   "routes": [
     {
       "pattern": "tuatmcc.com",
-      "custom_domain": true,
+      "custom_domain": true
     },
     {
       "pattern": "www.tuatmcc.com/*",
-      "zone_name": "tuatmcc.com",
+      "zone_name": "tuatmcc.com"
     }
-  ],
+  ]
   // "build": {
   //   "command": "pnpm run build",
   // },
