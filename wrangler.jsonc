@@ -7,8 +7,12 @@
   },
   "routes": [
     {
-      "pattern": "tuatmcc.com/*",
+      "pattern": "tuatmcc.com",
       "custom_domain": true,
+    },
+    {
+      "pattern": "www.tuatmcc.com/*",
+      "zone_name": "tuatmcc.com",
     }
   ],
   // "build": {
