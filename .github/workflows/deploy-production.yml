@@ -22,7 +22,7 @@ jobs:
         with:
           version: 10
 
-      - name: Setup | dependencies
+      - name: Setup | Install node packages
         run: pnpm install --frozen-lockfile --prod
         env:
           NODE_ENV: production
