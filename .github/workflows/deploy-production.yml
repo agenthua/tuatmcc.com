@@ -22,10 +22,15 @@ jobs:
         with:
           version: 10
 
+      - name: Setup | dependencies
+        run: pnpm install --frozen-lockfile --prod
+
+      - name: Setup | Build
+        run: pnpm build:prod
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
-          command: pnpm run deploy
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           wranglerVersion: "4.11.0"
         env:
