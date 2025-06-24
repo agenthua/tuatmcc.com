@@ -21,11 +21,11 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 10
-        env:
-          NODE_ENV: production
 
       - name: Setup | dependencies
         run: pnpm install --frozen-lockfile --prod
+        env:
+          NODE_ENV: production
 
       - name: Setup | Build
         run: pnpm build:prod
