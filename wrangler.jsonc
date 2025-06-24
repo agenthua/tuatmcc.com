@@ -23,8 +23,5 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "tuatmcc-com"
     }
-  ],
-  "build": {
-    "command": "pnpm run build:prod"
-  }
+  ]
 }
