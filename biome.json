@@ -29,7 +29,8 @@
   "json": {
     "formatter": {
       "enabled": true,
-      "lineEnding": "lf"
+      "lineEnding": "lf",
+      "trailingCommas": "none"
     },
     "parser": {
       "allowTrailingCommas": true
