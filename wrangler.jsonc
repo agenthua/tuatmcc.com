@@ -1,9 +1,12 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tuatmcc-com",
+  "main": ".open-next/worker.js",
   "compatibility_date": "2025-06-23",
+  "compatibility_flags": ["nodjes_compat", "global_fetch_strictly_public"],
   "assets": {
-    "directory": "./out",
-    "not_found_handling": "single-page-application"
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
   },
   "routes": [
     {
@@ -15,7 +18,13 @@
       "zone_name": "tuatmcc.com"
     }
   ],
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "tuatmcc-com"
+    }
+  ],
   "build": {
-    "command": "pnpm run build"
+    "command": "pnpm run build:prod"
   }
 }

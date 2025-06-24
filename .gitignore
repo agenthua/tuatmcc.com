@@ -13,6 +13,7 @@
 /.next/
 /out/
 /docs/
+/dist/
 
 # production
 /build
@@ -45,6 +46,7 @@ next-env.d.ts
 /.vscode/tasks.json
 /.vim
 /biome-*
+/.wrangler
 
 # sitemap
 sitemap*.xml
@@ -54,6 +56,9 @@ robots.txt
 # velite
 .velite
 public/static/*
+
+# opennextjs
+.open-next
 
 .envrc
 .direnv
