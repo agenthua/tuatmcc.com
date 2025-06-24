@@ -32,11 +32,11 @@ export const RecentNews: FC = () => {
             }}
             variants={{
               hidden: {
-                backgroundColor: 'var(--color-gray-100)',
+                background: 'var(--color-gray-100)',
               },
               visible: {
                 bottom: '0px',
-                backgroundColor: 'var(--color-blue-600)',
+                background: 'var(--color-mcc-2)',
                 transition: {
                   duration: 1.2,
                 },
@@ -63,7 +63,7 @@ export const RecentNews: FC = () => {
               <li key={news.slug} className="mb-2 text-gray-100">
                 <a
                   href={news.permalink}
-                  className="flex items-center gap-4 hover:before:content-[''] before:absolute hover:before:w-0 before:h-0 before:border-t-[5px] hover:before:border-t-transparent hover:before:border-b-[5px] hover:before:border-b-transparent hover:before:border-l-[10px] before:border-l-gray-100 hover:before:translate-x-[-200%] hover:before:translate-y-[-50%] hover:before:left-0 hover:before:top-1/2 relative"
+                  className="flex items-center gap-4 transition-all duration-300 hover:opacity-90 hover:translate-x-4 hover:before:content-[''] before:absolute hover:before:w-0 before:h-0 before:border-t-[5px] hover:before:border-t-transparent hover:before:border-b-[5px] hover:before:border-b-transparent hover:before:border-l-[10px] before:border-l-gray-100 hover:before:translate-x-[-200%] hover:before:translate-y-[-50%] hover:before:left-0 hover:before:top-1/2 relative"
                 >
                   <p
                     className={classNames(
@@ -81,7 +81,7 @@ export const RecentNews: FC = () => {
             href="/news"
             className={classNames(
               orbitron.className,
-              'flex items-center gap-2 text-gray-100 mr-8 px-4 font-bold tracking-wider self-end hover:bg-gray-100 hover:text-blue-600 transition-all duration-300',
+              'flex items-center gap-2 text-gray-100 mr-8 px-4 font-bold tracking-wider self-end hover:bg-gray-100 hover:text-mcc-2 transition-all duration-300',
             )}
           >
             <FaPlus />
