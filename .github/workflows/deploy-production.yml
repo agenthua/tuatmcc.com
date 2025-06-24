@@ -17,6 +17,11 @@ jobs:
       - name: Setup | Checkout
         uses: actions/checkout@v4
 
+      - name: Setup | Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
