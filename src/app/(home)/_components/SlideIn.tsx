@@ -12,7 +12,7 @@ type Props = ComponentPropsWithRef<typeof motion.div>;
 export const SlideIn: FC<Props> = () => {
   return (
     <motion.div
-      className="w-full flex"
+      className="w-full flex py-4"
       initial="hidden"
       whileInView="visible"
       viewport={{
@@ -46,7 +46,7 @@ export const SlideIn: FC<Props> = () => {
           backgroundPosition: '100% 100%',
           backgroundSize: '200% 200%',
           backgroundImage:
-            'linear-gradient(to bottom right, #193cb8 50%, #f6f3f4 50%)',
+            'linear-gradient(to bottom right, var(--color-mcc-2) 50%, var(--color-gray-100) 50%)',
         }}
       >
         <div
@@ -59,10 +59,10 @@ export const SlideIn: FC<Props> = () => {
 			100% 100%,
 			100% 79px,
 			calc(100% - 79px) 0,
-			calc(100% - 149px) 0,
-			calc(100% - 159px) 10px,
-			calc(100% - 219px) 10px,
-			calc(100% - 229px) 0
+			calc(100% - 148px) 0,
+			calc(100% - 158px) 10px,
+			calc(100% - 220px) 10px,
+			calc(100% - 230px) 0
 		)`,
           }}
         >
