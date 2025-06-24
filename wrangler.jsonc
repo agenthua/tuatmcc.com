@@ -14,8 +14,8 @@
       "pattern": "www.tuatmcc.com/*",
       "zone_name": "tuatmcc.com"
     }
-  ]
-  // "build": {
-  //   "command": "pnpm run build",
-  // },
+  ],
+  "build": {
+    "command": "pnpm run build"
+  }
 }
