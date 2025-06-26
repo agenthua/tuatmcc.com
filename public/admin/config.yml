@@ -63,7 +63,7 @@ collections:
     label: ニュース
     folder: news
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{uuid_shorter}}/index"
+    path: "{{year}}-{{month}}-{{day}}-{{uuid_shorter}}/index"
     extension: md
     fields:
       - label: タイトル
