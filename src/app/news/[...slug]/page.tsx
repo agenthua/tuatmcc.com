@@ -102,10 +102,12 @@ export default async function News({ params }: { params: Promise<Params> }) {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-  // すべての記事のパスを生成
-  return news.map((post) => {
-    return {
-      slug: post.slug.split('/').slice(1),
-    } satisfies Params;
-  });
+  // すべての公開記事のパスを生成
+  return news
+    .filter((post) => !post.draft)
+    .map((post) => {
+      return {
+        slug: post.slug.split('/').slice(1),
+      } satisfies Params;
+    });
 }

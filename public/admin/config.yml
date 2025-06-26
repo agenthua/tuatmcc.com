@@ -1,0 +1,94 @@
+backend:
+  name: github
+  repo: tuatmcc/hp-md-content
+  branch: main
+  base_url: https://sveltia-cms-auth.tuatmcc-com.workers.dev
+
+media_folder: /media
+
+# サイト設定
+site_url: https://tuatmcc.com
+display_url: https://tuatmcc.com
+logo_url: https://tuatmcc.com/logos/logo.svg
+
+# Sveltia CMS固有の設定
+sveltia_cms:
+  auto_save: true
+  locale: ja
+
+collections:
+  - name: blog
+    label: ブログ
+    folder: blog
+    create: true
+    path: "{{year}}-{{month}}-{{day}}-{{uuid_shorter}}/index"
+    extension: md
+    fields:
+      - label: タイトル
+        name: title
+        widget: string
+        required: true
+      - label: 公開日
+        name: date
+        widget: datetime
+        default: ""
+        date_format: "YYYY-MM-DD"
+        format: "YYYY-MM-DD"
+      - label: 著者
+        name: author
+        widget: string
+        required: true
+      - label: タグ
+        name: tags
+        widget: list
+        required: false
+        default: []
+      - label: 下書き
+        name: draft
+        widget: boolean
+        default: false
+      - label: サムネイル
+        name: thumbnail
+        widget: image
+        required: false
+        media_library:
+          config:
+            multiple: false
+            allow_add: true
+      - label: 本文
+        name: body
+        widget: markdown
+
+  - name: news
+    label: ニュース
+    folder: news
+    create: true
+    path: "{{year}}-{{month}}-{{day}}-{{uuid_shorter}}/index"
+    extension: md
+    fields:
+      - label: タイトル
+        name: title
+        widget: string
+        required: true
+      - label: 公開日
+        name: date
+        widget: datetime
+        default: ""
+        date_format: "YYYY-MM-DD"
+        format: "YYYY-MM-DD"
+        required: true
+      - label: 下書き
+        name: draft
+        widget: boolean
+        default: false
+      - label: サムネイル
+        name: thumbnail
+        widget: image
+        required: false
+        media_library:
+          config:
+            multiple: false
+            allow_add: true
+      - label: 本文
+        name: body
+        widget: markdown
