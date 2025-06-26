@@ -49,12 +49,13 @@ export default defineConfig({
           title: s.string().max(99),
           slug: s.path(),
           date: s.isodate(),
+          draft: s.boolean(),
           img: s.image().optional(),
           metadata: s.metadata(),
           excerpt: s.excerpt(),
           content: s.markdown(),
           tags: s.array(s.string()).optional(),
-          author: s.string().optional(),
+          author: s.string(),
         })
         // more additional fields (computed fields)
         .transform((data) => ({
@@ -71,6 +72,7 @@ export default defineConfig({
           title: s.string().max(99),
           slug: s.path(),
           date: s.isodate(),
+          draft: s.boolean(),
           img: s.image().optional(),
           metadata: s.metadata(),
           excerpt: s.excerpt(),

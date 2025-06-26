@@ -106,8 +106,8 @@ export default async function Blog({ params }: { params: Promise<Params> }) {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-  // すべての記事のパスを生成
-  return blog.map((post) => {
+  // すべての公開記事のパスを生成
+  return blog.filter((post) => !post.draft).map((post) => {
     return {
       slug: post.slug.split('/').slice(1),
     };
