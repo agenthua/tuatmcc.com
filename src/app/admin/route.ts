@@ -1,7 +1,8 @@
-import type { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  return new Response(`
+  return new Response(
+    `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +13,14 @@ export async function GET(request: NextRequest) {
 <body>
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </body>
-</html>`, {
+</html>`,
+    {
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
         'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      }
-    })
+        Pragma: 'no-cache',
+        Expires: '0',
+      },
+    },
+  );
 }
