@@ -47,6 +47,7 @@ collections:
         name: draft
         widget: boolean
         default: false
+        required: true
       - label: サムネイル
         name: thumbnail
         widget: image
@@ -81,6 +82,7 @@ collections:
         name: draft
         widget: boolean
         default: false
+        required: true
       - label: サムネイル
         name: thumbnail
         widget: image
