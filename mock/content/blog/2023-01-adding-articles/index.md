@@ -3,7 +3,8 @@ title: ブログ記事の書き方
 date: 2023-01-05
 tags: [web, dev]
 author: ojii3
-img: ./markdown.png
+draft: false
+thumbnail: ./markdown.png
 ---
 
 # 手順
