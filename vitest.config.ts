@@ -12,4 +12,9 @@ export default defineConfig({
       '~': resolve(__dirname, './src'),
     },
   },
+  css: {
+    postcss: {
+      plugins: [] // 空配列でテスト時のPostCSS処理をスキップ
+    }
+  }
 });
