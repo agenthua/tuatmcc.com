@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Navbar from "@components/Navbar.astro";
+import Pagination from "@components/pages/posts/Pagination.astro";
+import PostItem from "@components/pages/posts/PostItem.astro";
+import Search from "@components/pages/posts/Search.astro";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+import type { Page } from "astro";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  page: Page<CollectionEntry<"posts">>;
+  tags: { name: string; count: number }[];
+  tag?: string;
+}
+
+const { page, tags, tag } = Astro.props;
+---
+
+<GlobalLayout title="MCC - マイクロコンピュータークラブ | Posts">
+  <Navbar />
+  <main
+    class="relative mx-auto grid max-w-250 grid-cols-[1fr_3fr] grid-rows-[auto_1fr] gap-x-16 gap-y-8 px-4 py-8 2xl:max-w-300"
+  >
+    <div
+      class="lg:top-navbar-with-margin sticky col-start-1 col-end-3 row-start-1 flex h-fit flex-col gap-8 lg:col-end-2"
+    >
+      <div class="row-start-1 h-fit">
+        <div class="flex items-center justify-between">
+          <h1 class="font-orbitron text-4xl font-medium">
+            {tag === "news" ? "News" : "Posts"}
+          </h1>
+          <button
+            type="button"
+            class="btn btn-primary btn-outline lg:hidden"
+            onclick="post_search_modal.showModal()"
+          >
+            <Icon name="ri:arrow-left-double-fill" class="h-8 w-8" />
+          </button>
+          <dialog id="post_search_modal" class="modal">
+            <div class="modal-box">
+              <Search tags={tags} current={tag} />
+              <div class="modal-action">
+                <form method="dialog">
+                  <button class="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+        <p>{tag && `'${tag}'の`}記事一覧</p>
+      </div>
+
+      <div class="hidden self-start lg:flex">
+        <Search tags={tags} current={tag} />
+      </div>
+    </div>
+
+    <div
+      class="col-start-1 col-end-3 mx-auto grid w-full max-w-200 grid-cols-1 gap-8 md:grid-cols-2 lg:col-start-2"
+    >
+      {page.data.map((post) => <PostItem post={post} />)}
+    </div>
+
+    <div class="col-start-1 col-end-3 my-12 lg:col-start-2">
+      <Pagination page={page} />
+    </div>
+  </main>
+</GlobalLayout>

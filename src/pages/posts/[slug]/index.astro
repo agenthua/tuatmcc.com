@@ -1,0 +1,24 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import PostDetailLayout from "@layouts/PostDetailLayout.astro";
+
+export interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  const postResult = posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: { post },
+    }));
+
+  return postResult;
+}
+
+const { post } = Astro.props;
+---
+
+<PostDetailLayout post={post} />

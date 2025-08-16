@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  tags: { name: string; count: number }[];
+  current?: string;
+}
+
+const { tags, current } = Astro.props;
+---
+
+<div
+  class="border-primary flex w-full flex-col gap-4 border-r p-2 pb-24 backdrop-blur-md"
+>
+  <div class="flex flex-col gap-2">
+    <h2
+      class="font-orbitron text-base-content text-lg font-medium tracking-wide"
+    >
+      Search
+    </h2>
+    <label class="input input-primary validator">
+      <Icon name="ri:search-line" />
+      <input
+        class="placeholder:font-orbitron w-full placeholder:tracking-wider"
+        type="search"
+        placeholder="Comming Soon..."
+        disabled
+      />
+      <div
+        class:list={[
+          "bg-primary absolute right-0.5 bottom-0.5 h-4 w-4",
+          "[clip-path:polygon(0_100%,100%_100%,100%_0)]",
+        ]}
+      >
+      </div>
+    </label>
+  </div>
+  <div class="flex flex-col gap-2">
+    <h2
+      class="font-orbitron text-base-content text-lg font-medium tracking-wide"
+    >
+      Tags
+    </h2>
+    <div class="flex flex-wrap items-start gap-2">
+      {
+        tags.map((tag) => (
+          <a
+            href={tag.name === current ? "/posts" : `/posts/tags/${tag.name}`}
+            class:list={[
+              "px-3 py-0.5 text-xs font-normal duration-200",
+              "[clip-path:polygon(6px_0,0_50%,6px_100%,calc(100%-6px)_100%,100%_50%,calc(100%-6px)_0)]",
+              current === tag.name
+                ? "bg-primary text-gray-100"
+                : "bg-base-200 text-base-content hover:bg-primary hover:text-gray-100",
+            ]}
+          >
+            {tag.name} ({tag.count})
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>

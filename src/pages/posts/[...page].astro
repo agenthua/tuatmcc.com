@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import PostsLayout from "@layouts/PostsLayout.astro";
+import { PAGINATION_PAGE_SIZE } from "@libs/constants";
+import { getTags } from "@libs/getTags";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  const tags = getTags(posts);
+  return paginate(posts, { pageSize: PAGINATION_PAGE_SIZE, props: { tags } });
+}
+
+const { page, tags } = Astro.props;
+---
+
+<PostsLayout page={page} tags={tags} />

@@ -1,0 +1,250 @@
+---
+import Line1 from "@assets/decorations/line_1.svg";
+import Line2 from "@assets/decorations/line_2.svg";
+import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
+import Logo from "@assets/logo.svg";
+import { Icon } from "astro-icon/components";
+
+const links = [
+  {
+    href: "/posts/tags/news",
+    label: "Recent Activities",
+  },
+  {
+    href: "https://x.com/tuatmcc",
+    label: "Visit us on X (main)",
+  },
+  {
+    href: "https://x.com/tuatkyopro",
+    label: "Visit us on X (kyopro)",
+  },
+];
+
+const mccfetchProperties = [
+  {
+    label: "Host",
+    value: "Tokyo University of Agriculture and Technology",
+  },
+  {
+    label: "Uptime",
+    value: "over 20 years",
+  },
+  {
+    label: "Members",
+    value: "30+ active members",
+  },
+  {
+    label: "Room",
+    value: "Student Activities Building B, Room 208",
+  },
+  {
+    label: "Locale",
+    value: "ja_JP.UTF-8",
+  },
+];
+---
+
+<section
+  id="second-section"
+  class="w-ful pointer-events-none relative h-dvh overflow-hidden bg-repeat"
+>
+  <div
+    id="second-section-content"
+    class="fixed top-0 bottom-0 flex w-full justify-around opacity-0"
+  >
+    {/* Left Panel */}
+    <div class="flex flex-col justify-around">
+      <h2
+        class="font-orbitron p-4 pt-12 text-5xl font-medium tracking-wide lg:-mr-32 lg:pt-8 xl:pl-32"
+      >
+        What is <br class="lg:hidden" />
+        <span class="text-primary pl-24 lg:pl-0">MCC</span>?
+        <Line1
+          class="absolute top-2 -left-8 w-100 text-gray-800 xl:w-160 dark:text-gray-200"
+        />
+      </h2>
+
+      <p class="white relative px-4 text-lg lg:text-xl">
+        マイクロコンピュータクラブ(MCC)は、<br />
+        東京農工大学のプログラミングサークルです。
+        <br />
+        <br />
+        講習会や合宿を開催したり、競プロやWeb開発、
+        <br />
+        ゲーム制作等を行っています。
+
+        <Line2
+          class="absolute -top-16 left-4 w-100 text-gray-600 xl:w-160 dark:text-gray-400"
+        />
+      </p>
+
+      <ul class="relative flex w-100 flex-col items-stretch gap-4 p-8 lg:w-120">
+        {
+          links.map(({ label, href }) => (
+            <li class="font-orbitron border-base-300 after:bg-base-100 relative border-b border-l p-1 after:absolute after:-bottom-0.5 after:left-8 after:h-0.5 after:w-8">
+              <a
+                href={href}
+                class:list={[
+                  "group hover:text-primary relative flex items-center overflow-hidden bg-transparent px-4 py-2 text-xl text-nowrap text-gray-100 lg:text-2xl",
+                  "[clip-path:polygon(0_0,0_100%,calc(100%-20px)_100%,100%_calc(100%-20px),100%_0)]",
+                ]}
+              >
+                {label}
+                <div class="second-section-link-bg bg-primary absolute top-0 left-0 -z-1 h-full w-1 bg-blend-overlay" />
+                <Icon name="ri:arrow-right-s-fill" class="ml-auto h-8 w-8" />
+
+                <div
+                  class:list={[
+                    "group-hover absolute inset-1 -z-1 duration-200",
+                    "[clip-path:polygon(0_0,0_100%,calc(100%-18.4px)_100%,100%_calc(100%-18.4px),100%_0)]",
+                  ]}
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    {/* Right Panel */}
+    <div class="hidden flex-col justify-around lg:flex">
+      <div
+        id="second-section-terminal"
+        class:list={[
+          "relative h-0 max-h-128 bg-gray-800 p-4 font-mono text-gray-100 brightness-100 max-lg:text-xs xl:max-h-80",
+        ]}
+      >
+        <div
+          class="terminal-text text-shadow-bloom w-0 overflow-hidden text-nowrap text-shadow-white"
+        >
+          &RightAngleBracket; mccfetch
+        </div>
+        <div class="flex flex-col items-start justify-start gap-4 xl:flex-row">
+          <div class="terminal-text max-w-32 overflow-hidden py-4">
+            <Logo />
+          </div>
+          <div class="flex flex-1 flex-col gap-2">
+            <p
+              class="terminal-text text-secondary text-shadow-bloom text-shadow-secondary overflow-hidden text-nowrap"
+            >
+              mcc@tuat
+            </p>
+            <p
+              class="terminal-text text-shadow-bloom overflow-hidden text-nowrap text-shadow-white"
+            >
+              ----------------------------------------------------
+            </p>
+            <p></p>
+            {
+              mccfetchProperties.map(({ label, value }) => (
+                <p class="terminal-text text-shadow-bloom overflow-hidden text-nowrap text-shadow-white">
+                  <span class="text-amber-400 text-shadow-amber-400">
+                    {label}
+                  </span>
+                  : {value}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+
+        <div
+          class="border-primary absolute -top-2 -right-2 -bottom-2 -left-2 border-2 dark:border-gray-500"
+        >
+        </div>
+        <div class="bg-base-100 absolute -top-2 right-4 h-2 w-16"></div>
+        <div class="bg-base-100 absolute -bottom-2 left-8 h-2 w-24"></div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="font-orbitron font-outline absolute top-1/2 -z-1 text-end text-8xl font-bold text-transparent"
+  >
+    Terminal Emulator is our friend.
+  </div>
+</section>
+
+<style define:vars={{ background: `url(${backgroundPattern.src})` }}>
+  #second-section {
+    background-image: var(--background);
+    background-repeat: repeat;
+  }
+  .group {
+    .group-hover {
+      background-position: 100% 0;
+      background-size: 200% 100%;
+      background-image: linear-gradient(
+        90deg,
+        var(--color-gray-100) 0%,
+        var(--color-gray-100) 50%,
+        transparent 50%,
+        transparent 100%
+      );
+    }
+    &:hover .group-hover {
+      background-position: 0 0;
+    }
+  }
+  #second-section-terminal {
+    ::before {
+      pointer-events: none;
+      opacity: 0.2;
+      background-blend-mode: overlay;
+      position: absolute;
+      background-image: repeating-linear-gradient(
+        #0000,
+        #0000 1px,
+        #0033 1px,
+        #0033 2px
+      );
+      content: "";
+      inset: 0;
+      z-index: 1;
+    }
+  }
+</style>
+
+<script>
+  import {
+    inView,
+    animate,
+    type AnimationSequence,
+    stagger,
+    steps,
+  } from "motion";
+
+  const inSequence: AnimationSequence = [
+    ["#second-section", { pointerEvents: "auto" }],
+    ["#second-section-content", { opacity: [0, 1] }, { duration: 0.5, at: 0 }],
+    [
+      ".second-section-link-bg",
+      { width: [0, "100%"] },
+      { duration: 0.2, delay: stagger(0.1), at: 0.2 },
+    ],
+    ["#second-section-terminal", { width: [0, "100%"] }, { duration: 0.4 }],
+    ["#second-section-terminal", { height: [0, "100%"] }, { duration: 0.5 }],
+    [
+      ".terminal-text",
+      { width: [0, "100%"] },
+      { duration: 0.3, delay: stagger(0.3), ease: steps(10) },
+    ],
+  ];
+
+  const outSequence: AnimationSequence = [
+    ["#second-section", { pointerEvents: "none" }],
+    ["#second-section-content", { opacity: [1, 0] }, { duration: 0.2 }],
+  ];
+
+  inView(
+    "#second-section",
+    (element) => {
+      animate(inSequence);
+
+      return () => animate(outSequence);
+    },
+    {
+      margin: "-50% 0px -50% 0px",
+    },
+  );
+</script>

@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { Page } from "astro";
+
+export interface Props {
+  page: Page<CollectionEntry<"posts">>;
+}
+
+const { page } = Astro.props;
+---
+
+<div class="flex justify-center">
+  <a
+    href={page.url.prev}
+    class:list={[
+      "btn btn-primary relative -mx-1 border-0 px-6",
+      "[clip-path:polygon(10px_0,0_50%,10px_100%,calc(100%-10px)_100%,100%_0)]",
+    ]}
+    aria-label="Previous Page"
+  >
+    <div
+      class:list={[
+        "bg-base-100 absolute right-0 left-1 h-full",
+        "[clip-path:polygon(10px_0,0_50%,10px_100%,calc(100%-10px)_100%,100%_0)]",
+      ]}
+    >
+    </div>
+    <div
+      class:list={[
+        "bg-primary absolute right-0 left-2 h-full",
+        "[clip-path:polygon(10px_0,0_50%,10px_100%,calc(100%-10px)_100%,100%_0)]",
+      ]}
+    >
+    </div>
+
+    {
+      new Array(page.lastPage).fill(0).map((_, index) => {
+        const pageNumber = index + 1;
+        return (
+          <a
+            href={index > 0 ? `/posts/${index + 1}` : "/posts"}
+            class:list={[
+              "btn btn-primary font-orbitron relative -mx-1 w-12 lg:w-16 lg:text-lg",
+              "[clip-path:polygon(10px_0,0_100%,calc(100%-10px)_100%,100%_0)]",
+              pageNumber === page.currentPage && "btn-active",
+            ]}
+          >
+            <div
+              class:list={[
+                "gird absolute top-[1px] right-[1.4px] bottom-[1px] left-[1.4px] place-content-center",
+                "[clip-path:polygon(9px_0,0_100%,calc(100%-9px)_100%,100%_0)]",
+                pageNumber === page.currentPage
+                  ? "bg-base-100 text-primary"
+                  : "text-base-100",
+              ]}
+            >
+              {pageNumber}
+            </div>
+          </a>
+        );
+      })
+    }
+
+    <a
+      href={page.url.next}
+      class:list={[
+        "btn btn-primary relative -mx-1 border-0 px-6",
+        "[clip-path:polygon(10px_0,0_100%,calc(100%-10px)_100%,100%_50%,calc(100%-10px)_0)]",
+      ]}
+      aria-label="Next Page"
+    >
+      <div
+        class:list={[
+          "bg-base-100 absolute right-1 left-0 h-full",
+          "[clip-path:polygon(10px_0,0_100%,calc(100%-10px)_100%,100%_50%,calc(100%-10px)_0)]",
+        ]}
+      >
+      </div>
+      <div
+        class:list={[
+          "bg-primary absolute right-2 left-0 h-full",
+          "[clip-path:polygon(10px_0,0_100%,calc(100%-10px)_100%,100%_50%,calc(100%-10px)_0)]",
+        ]}
+      >
+      </div>
+    </a>
+  </a>
+</div>

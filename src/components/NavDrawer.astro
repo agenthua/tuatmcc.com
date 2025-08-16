@@ -1,0 +1,129 @@
+---
+import { Icon } from "astro-icon/components";
+import TypoGraphy from "../assets/decorations/typography-technology.svg";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/posts/tags/news", label: "News" },
+  { href: "/posts", label: "Blog" },
+];
+
+const socialLinks = [
+  { href: "https://x.com/tuatmcc", icon: "ri:twitter-x-fill" },
+  { href: "https://x.com/tuatkyopro", icon: "ri:twitter-x-fill" },
+  { href: "https://github.com/tuatmcc", icon: "ri:github-fill" },
+];
+
+const drawerId = "global-sidebar";
+
+export interface Props {
+  withBar?: boolean;
+}
+---
+
+<div class="drawer drawer-end">
+  <input id={drawerId} type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <slot />
+    <label
+      id="global-sidebar-toggle"
+      for={drawerId}
+      class="fixed top-2 right-2 z-20 p-2 hover:cursor-pointer"
+      aria-label="toggle sidebar"
+    >
+      <Icon name="ri:menu-fill" class="h-8 w-8" />
+    </label>
+  </div>
+
+  <div class="drawer-side z-10">
+    <label for={drawerId} class="drawer-overlay" aria-label="close sidebar"
+    ></label>
+
+    <div
+      class="menu grid h-dvh w-80 max-w-10/12 p-0"
+      style={{
+        clipPath:
+          "polygon(0 0, 0 30%, 60px calc(30% + 60px), 60px calc(100% - 160px), 0 calc(100% - 100px), 0 100%, 100% 100%, 100% 0)",
+      }}
+    >
+      <div
+        class="relative flex flex-col overflow-y-hidden bg-gray-800 p-2 pl-16"
+      >
+        <TypoGraphy
+          class="pointer-events-none absolute h-full w-auto py-4 text-gray-700"
+        />
+        <div
+          class="flex h-full w-full flex-col justify-between overflow-y-auto pt-24 pl-8"
+        >
+          <ul class="flex flex-col gap-8">
+            {
+              links.map((link) => (
+                <li class="font-orbitron relative flex text-2xl tracking-wider text-gray-100 after:h-0.5 after:w-0 after:bg-white after:duration-200 hover:after:w-full">
+                  <a href={link.href} class="flex w-full justify-end p-2">
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <div class="relative">
+            <div class="absolute top-0 right-0 bottom-0 w-[4px] bg-blue-600">
+            </div>
+            <ul class="relative flex flex-col gap-8 p-4">
+              {
+                socialLinks.map((socialLink) => (
+                  <li class="flex">
+                    <a
+                      href={socialLink.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex flex-1 justify-end"
+                    >
+                      <Icon
+                        name={socialLink.icon}
+                        class="h-6 w-6 text-gray-200"
+                      />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="fixed top-0 h-[30%] w-[60px] bg-blue-600"
+        style={{
+          clipPath:
+            "polygon(20px 0, 22px 0, 22px 20%, 60px calc(20% + 38px), 60px calc(20% + 50px), 20px calc(20% + 12px))",
+        }}
+      >
+      </div>
+      <div
+        class="fixed top-0 h-[30%] w-[60px] bg-blue-600"
+        style={{
+          clipPath:
+            "polygon(20px calc(20% + 22px), 60px calc(20% + 62px), 60px calc(20% + 74px), 20px calc(20% + 36px))",
+        }}
+      >
+      </div>
+      <div
+        class="fixed top-0 h-[30%] w-[60px] bg-blue-600"
+        style={{
+          clipPath:
+            "polygon(20px calc(20% + 46px), 60px calc(20% + 86px), 60px calc(20% + 98px), 20px calc(20% + 60px))",
+        }}
+      >
+      </div>
+      <div
+        class="fixed top-0 h-[30%] w-[60px] bg-blue-600"
+        style={{
+          clipPath:
+            "polygon(58px calc(20% + 86px), 60px calc(20% + 86px), 60px calc(20% + 160px), 58px calc(20% + 160px))",
+        }}
+      >
+      </div>
+    </div>
+  </div>
+</div>

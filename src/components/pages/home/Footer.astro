@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+---
+
+<div class="footer flex w-full flex-col justify-between">
+  <div class="relative flex flex-col items-center justify-center py-24">
+    <p
+      class="mx-auto mb-4 w-[640px] max-w-full translate-y-[40px] p-4 text-xl leading-8 font-bold opacity-0 duration-1000"
+    >
+      技術を探求する部員が集結するMCC。
+      <br />
+      プログラミング、グラフィックデザイン、ハードウェアなど、
+      <br />
+      様々な興味を持つ部員たちが交流を重ね、 新しい視野を開拓する。 <br />
+      それが東京農工大学マイクロコンピュータークラブです。
+    </p>
+  </div>
+  <footer class="flex flex-col items-center justify-center gap-8">
+    <Image
+      src="/icons/wordmark-logo.svg"
+      alt="MCC Logo"
+      width={240}
+      height={240}
+    />
+    <ul class="flex items-center justify-center px-4 py-12 md:px-12">
+      <a
+        href="https://x.com/tuatmcc"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mx-4 flex items-center justify-center gap-2"
+      >
+        <Icon name="ri:twitter-x-line" class="h-6 w-6" />
+        MCC
+      </a>
+      <a
+        href="https://x.com/tuatkyopro"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mx-4 flex items-center justify-center gap-2"
+      >
+        <Icon name="ri:twitter-x-line" class="h-6 w-6" />
+        競プロ
+      </a>
+      <a
+        href="https://github.com/tuatmcc"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mx-4 flex items-center justify-center gap-2"
+      >
+        <Icon name="ri:github-fill" class="h-6 w-6" />
+        GitHub
+      </a>
+    </ul>
+    <p
+      class="flex h-24 w-full items-center justify-center bg-gray-800 text-sm text-gray-500 md:hidden"
+    >
+      ©2023 東京農工大学マイクロコンピュータークラブ
+    </p>
+    <p
+      class="hidden h-24 w-full items-center justify-center bg-gray-800 text-sm text-gray-500 md:flex"
+      style={{
+        clipPath: `polygon(
+              0 30px,
+              0 100%,
+              100% 100%,
+              100% 30px,
+              calc(100% - 30px) 60px,
+              calc(50% + 240px) 60px,
+              calc(50% + 180px) 0,
+              calc(50% - 180px) 0,
+              calc(50% - 240px) 60px,
+              30px 60px
+)`,
+      }}
+    >
+      ©2023 東京農工大学マイクロコンピュータークラブ
+    </p>
+  </footer>
+</div>
+
+<script>
+  import { animate, inView } from "motion";
+  const footer = document.querySelector(".footer")!;
+
+  inView(
+    ".footer p",
+    (element) => {
+      animate(element, {
+        transform: "translateY(0)",
+      });
+    },
+    { root: footer, amount: 0.6 },
+  );
+</script>

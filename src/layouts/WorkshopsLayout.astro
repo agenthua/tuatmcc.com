@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Navbar from "@components/Navbar.astro";
+import Pagination from "@components/pages/posts/Pagination.astro";
+import PostItem from "@components/pages/posts/PostItem.astro";
+import Search from "@components/pages/posts/Search.astro";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+import type { Page } from "astro";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  page: Page<CollectionEntry<"workshops">>;
+}
+
+const { page } = Astro.props;
+---
+
+<GlobalLayout title="MCC - マイクロコンピュータークラブ | Workshops">
+  <Navbar />
+  <main
+    class="relative mx-auto grid max-w-250 grid-cols-[1fr_3fr] grid-rows-[auto_1fr] gap-x-16 gap-y-8 px-4 py-8 2xl:max-w-300"
+  >
+  </main>
+</GlobalLayout>
