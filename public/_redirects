@@ -1,0 +1,36 @@
+ /blog/2022-03-discord-bot-tutorial/ /posts/2022-03-16-discord-bot-tutorial/ 301
+ /blog/2023-01-adding-articles/ /posts/2023-01-05-adding-articles/ 301
+ /blog/2023-01-arch-tuatnet/ /posts/2023-01-07-arch-tuatnet/ 301
+ /blog/2023-02-github-hedless-cms/ /posts/2023-02-19-github-hedless-cms/ 301
+ /blog/2023-05-26-mcc-c-lec-1/ /posts/2023-05-26-mcc-c-lec-1/ 301
+ /blog/2023-05-26-mcc-c-lec-2/ /posts/2023-05-26-mcc-c-lec-2/ 301
+ /blog/2023-05-26-mcc-c-lec-3/ /posts/2023-05-26-mcc-c-lec-3/ 301
+ /blog/2023-10-25-windows-cli-environment/ /posts/2023-10-30-windows-cli-environment/ 301
+ /blog/2024-01-26-ascii-table/ /posts/2024-01-26-ascii-table/ 301
+ /blog/2024-04-24-cpawctf/ /posts/2024-04-24-cpawctf/ 301
+ /blog/picogym-exclusive/ /posts/2024-05-26-picogym-exclusive/ 301
+ /blog/RiderStudents/ /posts/2024-08-07-riderstudents/ 301
+ /blog/UnityLec2024Step0/ /posts/2024-07-20-unitylec2024step0/ 301
+ /blog/UnityLec2024Step1/ /posts/2024-07-20-unitylec2024step1/ 301
+ /blog/UnityLec2024Step2/ /posts/2024-08-21-unitylec2024step2/ 301
+ /blog/UnityLec2024Step3/ /posts/2024-09-11-unitylec2024step3/ 301
+
+ /news/2021-12-15-475a4cff/ /posts/2021-12-15-475a4cff/ 301
+ /news/2022-03-nodejs-lesson/ /posts/2022-03-16-nodejs-lesson/ 301
+ /news/2022-11-13-nokosai/ /posts/2022-11-13-nokosai/ 301
+ /news/2022-12-mccmmancc2022/ /posts/2022-12-17-mccmmancc2022/ 301
+ /news/2023-01-website-renewal/ /posts/2023-01-13-website-renewal/ 301
+ /news/2023-03-spring-camp-2022/ /posts/2023-03-18-spring-camp-2022/ 301
+ /news/2023-07-07-icpc2023/ /posts/2023-07-07-icpc2023/ 301
+ /news/2023-10-summer-camp-2023/ /posts/2023-10-16-summer-camp-2023/ 301
+ /news/2023-11-10-nokosai/ /posts/2023-11-10-nokosai/ 301
+ /news/2024-02-18-tcexpo/ /posts/2024-02-18-tcexpo/ 301
+ /news/2024-03-spring-camp-2023/ /posts/2024-03-26-spring-camp-2023/ 301
+ /news/2024-05-19-satsukisai/ /posts/2024-05-19-satsukisai/ 301
+ /news/2024-06-15-TechCircleExpo-2/ /posts/2024-06-15-techcircleexpo-2/ 301
+ /news/2024-07-06-geekhaku/ /posts/2024-07-06-geekhaku/ 301
+/news/2024-09-summer-camp-2024/ /posts/2024-09-28-summer-camp-2024/ 301
+
+ # Catch-all fallbacks
+ /blog /posts 301
+ /news/ /posts/tags/news 301
