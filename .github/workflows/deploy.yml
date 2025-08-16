@@ -2,7 +2,6 @@
 name: Deploy Preview & Publish Production
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
   push:
     branches: [main]
 
@@ -32,18 +31,18 @@ jobs:
       - name: Setup | Install dependencies
         run: bun install --frozen-lockfile
 
-      # - name: Setup | Post comment
-      #   if: github.event_name == 'pull_request'
-      #   run: |
-      #     gh pr comment ${{ github.event.pull_request.number }} --edit-last --create-if-none --body-file - <<EOF
-      #     ### <span aria-hidden="true">🚧</span> Deploy Preview building...
-      #
-      #     |  Name | Link |
-      #     |---------------------------------|------------------------|
-      #     |<span aria-hidden="true">🔨</span> Latest commit | ${{ github.sha }} |
-      #     |<span aria-hidden="true">🔍</span> Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-      #     ---
-      #     EOF
+      - name: Setup | Post comment
+        if: github.event_name == 'pull_request'
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --edit-last --create-if-none --body-file - <<EOF
+          ### <span aria-hidden="true">🚧</span> Deploy Preview building...
+
+          |  Name | Link |
+          |---------------------------------|------------------------|
+          |<span aria-hidden="true">🔨</span> Latest commit | ${{ github.sha }} |
+          |<span aria-hidden="true">🔍</span> Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
+          ---
+          EOF
 
       - name: Setup | Get version
         id: get-version
@@ -66,19 +65,19 @@ jobs:
             --tag "${{ steps.get-version.outputs.version }}"
             --message "${{ github.event_name == 'pull_request' && format('Preview deployment for PR #{0}', github.event.pull_request.number) || 'Release deployment' }}"
 
-      # - name: Finish | Post comment
-      #   if: github.event_name == 'pull_request'
-      #   run: |
-      #     gh pr comment ${{ github.event.pull_request.number }} --edit-last --create-if-none --body-file - <<EOF
-      #     ### <span aria-hidden="true">✅</span> Deploy Preview ready!
-      #
-      #     |  Name | Link |
-      #     |---------------------------------|------------------------|
-      #     |<span aria-hidden="true">🔨</span> Latest commit | ${{ github.sha }} |
-      #     |<span aria-hidden="true">🔍</span> Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
-      #     |<span aria-hidden="true">🌐</span> Preview link | [${{ steps.deploy-preview.outputs.deployment-url }}](${{ steps.deploy-preview.outputs.deployment-url }}) |
-      #     ---
-      #     EOF
+      - name: Finish | Post comment
+        if: github.event_name == 'pull_request'
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --edit-last --create-if-none --body-file - <<EOF
+          ### <span aria-hidden="true">✅</span> Deploy Preview ready!
+
+          |  Name | Link |
+          |---------------------------------|------------------------|
+          |<span aria-hidden="true">🔨</span> Latest commit | ${{ github.sha }} |
+          |<span aria-hidden="true">🔍</span> Latest deploy log | ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} |
+          |<span aria-hidden="true">🌐</span> Preview link | [${{ steps.deploy-preview.outputs.deployment-url }}](${{ steps.deploy-preview.outputs.deployment-url }}) |
+          ---
+          EOF
 
   publish:
     runs-on: ubuntu-latest
