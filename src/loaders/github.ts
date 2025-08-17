@@ -46,7 +46,11 @@ const updateRepo = async ({ logger }: LoaderContext) => {
 export const github = (pattern: string, base: string): Loader => ({
   name: "github",
   async load(context) {
-    await updateRepo(context);
+    if (import.meta.env.DEV) {
+      await updateRepo(context);
+    } else {
+      await cloneRepo();
+    }
     return glob({ pattern, base }).load(context);
   },
 });
