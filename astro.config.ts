@@ -1,3 +1,5 @@
+export const prernder = true;
+
 import cloudflare from "@astrojs/cloudflare";
 import partytown from "@astrojs/partytown";
 import react from "@astrojs/react";
@@ -40,7 +42,9 @@ export default defineConfig({
   image: {
     layout: "constrained",
   },
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    platformProxy: { enabled: true },
+  }),
   experimental: {
     fonts: [
       {
