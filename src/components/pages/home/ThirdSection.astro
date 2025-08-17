@@ -3,48 +3,55 @@ import { Image } from "astro:assets";
 import Line3 from "@assets/decorations/line_3.svg";
 import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
 import campImage from "@assets/images/activities_camp.webp";
-import { Icon } from "astro-icon/components";
+import workshopImage from "@assets/images/activities_workshop.webp";
+import ltImage from "@assets/images/activities_lt.webp";
 
 const activities = [
   {
     title: "合宿",
-    description: "合宿ではキャンプを行います。",
+    description:
+      "春・夏休みに2泊3日で、ハッカソンや競技プロの部内コンテストを行います。",
     image: campImage,
     padding: "lg:pr-0 lg:pl-32",
     id: "ac1",
   },
   {
     title: "コンテスト",
-    description: "コンテストでは競技プログラミングを行います。",
+    description:
+      "兢プロのオンラインコンテストやICPC、その他CTF等のコンテストに参加しています。",
     image: campImage,
     padding: "lg:pr-8 lg:pl-24",
     id: "ac2",
   },
   {
     title: "学祭ゲーム制作",
-    description: "学祭ゲーム制作では、学園祭のためのゲームを制作します。",
+    description:
+      "Unity等を用いて、チームで新たにゲームを制作・出展しています。",
     image: campImage,
     padding: "lg:pr-16 lg:pl-16",
     id: "ac3",
   },
   {
     title: "講習会",
-    description: "講習会では、プログラミングや技術に関する講習を行います。",
-    image: campImage,
+    description: "Unity, Git, Web等の部内講習会を行っています。",
+    image: workshopImage,
     padding: "lg:pr-24 lg:pl-8",
     id: "ac4",
   },
   {
     title: "LT会",
-    description: "LT会です",
-    image: campImage,
+    description: "新歓LT会や他大学との技術交流LT会などを行っています",
+    image: ltImage,
     padding: "lg:pr-32 lg:pl-0",
     id: "ac5",
   },
 ];
 ---
 
-<section id="third-section" class="relative h-dvh w-full">
+<section
+  id="third-section"
+  class="pointer-events-none relative h-lvh w-full overflow-hidden"
+>
   <div
     id="third-section-content"
     class="pt-navbar fixed inset-0 flex flex-col gap-8 opacity-0"
@@ -61,16 +68,16 @@ const activities = [
         </h2>
         <p
           id="third-section-description"
-          class="relative p-4 lg:-mr-16 lg:pl-24"
+          class="relative p-4 lg:-mr-24 lg:pl-24 lg:text-lg"
         >
           MCCでは参加必須の活動はありません。<br />
           自分の興味のある活動に参加し、
           <br />
           また立ち上げることも可能です。
-          <Line3
-            class="absolute top-8 left-8 -z-1 text-gray-800 dark:text-gray-200"
-          />
         </p>
+        <Line3
+          class="absolute bottom-8 left-8 -z-1 text-gray-800 lg:bottom-24 lg:left-16 dark:text-gray-200"
+        />
       </div>
 
       <ul class="flex flex-col gap-8 p-4">

@@ -1,4 +1,3 @@
-@import "./_fonts.css";
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -42,7 +41,7 @@
 }
 
 @theme {
-  --font-orbitron: Orbitron, sans-serif;
+  --font-orbitron: var(--font-family-orbitron), sans-serif;
   --shadow-bloom: 0 0 4px var(--color-secondary);
   --drop-shadow-bloom: 0 0 4px var(--color-secondary);
   --text-shadow-bloom: 0 0 4px var(--tw-text-shadow-color);

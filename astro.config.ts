@@ -1,7 +1,8 @@
+import cloudflare from "@astrojs/cloudflare";
 import partytown from "@astrojs/partytown";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, envField } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import remarkNormalizeHeadings from "remark-normalize-headings";
@@ -9,6 +10,7 @@ import remarkToc from "remark-toc";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://tuatmcc.com",
   vite: {
     plugins: [tailwindcss()],
   },
@@ -22,7 +24,6 @@ export default defineConfig({
       themes: ["github-light", "github-dark"],
     }),
   ],
-  site: "https://tuatmcc.com",
   markdown: {
     gfm: true,
     remarkPlugins: [remarkToc, remarkNormalizeHeadings],
@@ -35,5 +36,19 @@ export default defineConfig({
         optional: true,
       }),
     },
+  },
+  image: {
+    layout: "constrained",
+  },
+  adapter: cloudflare(),
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Orbitron",
+        weights: ["500", "700"], // medium, bold
+        cssVariable: "--font-family-orbitron",
+      },
+    ],
   },
 });
