@@ -6,7 +6,6 @@ import type { FC } from "react";
 
 type Props = {
   title: string;
-  tags?: string[];
 };
 
 type Variant = "primary" | "secondary";
@@ -20,10 +19,8 @@ const colorVariants: Record<Variant, { fg: string }> = {
   },
 };
 
-export const OgImage: FC<Props> = ({ title, tags }) => {
-  const { fg } = tags?.includes("news")
-    ? colorVariants.secondary
-    : colorVariants.primary;
+export const OgImage: FC<Props> = ({ title }) => {
+  const { fg } = colorVariants.primary;
 
   return (
     <div

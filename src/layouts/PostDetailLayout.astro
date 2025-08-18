@@ -25,6 +25,12 @@ const authors: string[] = post.data.author
 ---
 
 <GlobalLayout title={titleText} ogImage={ogImage}>
+  <link
+    slot="head"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    rel="stylesheet"
+  />
+
   <Navbar />
   <div class="mx-auto flex max-w-5xl gap-8">
     <article

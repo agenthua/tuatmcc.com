@@ -1,5 +1,3 @@
-export const prernder = true;
-
 import cloudflare from "@astrojs/cloudflare";
 import partytown from "@astrojs/partytown";
 import react from "@astrojs/react";
@@ -7,6 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, envField, fontProviders } from "astro/config";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 import remarkNormalizeHeadings from "remark-normalize-headings";
 import remarkToc from "remark-toc";
 
@@ -28,7 +28,8 @@ export default defineConfig({
   ],
   markdown: {
     gfm: true,
-    remarkPlugins: [remarkToc, remarkNormalizeHeadings],
+    remarkPlugins: [remarkToc, remarkNormalizeHeadings, remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
   env: {
     schema: {
