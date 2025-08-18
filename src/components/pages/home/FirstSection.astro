@@ -56,8 +56,10 @@ import animatedLogo from "/public/images/animated_mcc.webp";
       ],
       ["#mcc-jp-text", { opacity: 1 }, { duration: 0.5, at: 3 }],
       ["#mcc-text", { opacity: 1 }, { duration: 0.5 }],
-      ["#static-logo", { display: "block" }, { duration: 0.01 }],
-      ["#animated-logo", { display: "none" }, { duration: 0.01 }],
+      ["#static-logo", { opacity: [0, 1] }, { duration: 0.1 }],
+      ["#animated-logo", { display: [1, 0] }, { duration: 0.1 }],
+      ["#static-logo", { display: "block" }, { duration: 0.1 }],
+      ["#animated-logo", { display: "none" }, { duration: 0.1 }],
     ];
 
     animate(sequence);
