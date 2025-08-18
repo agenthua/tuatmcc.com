@@ -1,6 +1,7 @@
 ---
 import Line1 from "@assets/decorations/line_1.svg";
 import Line2 from "@assets/decorations/line_2.svg";
+import Line4 from "@assets/decorations/line_4.svg";
 import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
 import Logo from "@assets/logo.svg";
 import { Icon } from "astro-icon/components";
@@ -50,12 +51,12 @@ const mccfetchProperties = [
 >
   <div
     id="second-section-content"
-    class="fixed top-0 bottom-0 flex w-full justify-around opacity-0"
+    class="fixed top-0 flex h-svh w-full justify-around opacity-0"
   >
     {/* Left Panel */}
     <div class="flex flex-col justify-around">
       <h2
-        class="font-orbitron p-4 pt-12 text-5xl font-medium tracking-wide lg:-mr-32 lg:pt-8 xl:pl-32"
+        class="font-orbitron p-4 pt-12 text-4xl font-medium tracking-wide lg:-mr-32 lg:pt-8 lg:text-5xl xl:pl-32"
       >
         What is <br class="lg:hidden" />
         <span class="text-primary pl-24 lg:pl-0">MCC</span>?
@@ -64,7 +65,7 @@ const mccfetchProperties = [
         />
       </h2>
 
-      <p class="white relative px-4 text-lg lg:text-xl">
+      <p class="white relative px-4 lg:text-xl">
         マイクロコンピュータクラブ(MCC)は、<br />
         東京農工大学のプログラミングサークルです。
         <br />
@@ -75,6 +76,9 @@ const mccfetchProperties = [
 
         <Line2
           class="absolute -top-16 left-4 w-100 text-gray-600 xl:w-160 dark:text-gray-400"
+        />
+        <Line4
+          class="absolute -bottom-16 left-4 w-100 text-gray-400 xl:w-160 dark:text-gray-400"
         />
       </p>
 
@@ -159,7 +163,7 @@ const mccfetchProperties = [
   </div>
 
   <div
-    class="font-orbitron font-outline absolute top-1/2 -z-1 text-end text-8xl font-bold text-transparent"
+    class="font-orbitron font-outline absolute top-1/2 -z-1 text-end text-8xl font-bold text-transparent opacity-80"
   >
     Terminal Emulator is our friend.
   </div>
@@ -183,7 +187,9 @@ const mccfetchProperties = [
       );
     }
     &:hover .group-hover {
-      background-position: 0 0;
+      @media (hover: hover) {
+        background-position: 0 0;
+      }
     }
   }
   #second-section-terminal {
@@ -220,7 +226,7 @@ const mccfetchProperties = [
     [
       ".second-section-link-bg",
       { width: [0, "100%"] },
-      { duration: 0.2, delay: stagger(0.1), at: 0.2 },
+      { duration: 0.2, delay: stagger(0.1), at: 0 },
     ],
     ["#second-section-terminal", { width: [0, "100%"] }, { duration: 0.4 }],
     ["#second-section-terminal", { height: [0, "100%"] }, { duration: 0.5 }],

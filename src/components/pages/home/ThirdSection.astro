@@ -54,9 +54,9 @@ const activities = [
 >
   <div
     id="third-section-content"
-    class="pt-navbar fixed inset-0 flex flex-col gap-8 opacity-0"
+    class="lg:pt-navbar fixed inset-0 flex h-svh flex-col opacity-0 lg:gap-8"
   >
-    <h2 class="font-orbitron p-4 text-4xl font-medium lg:hidden">
+    <h2 class="font-orbitron p-4 pt-8 text-4xl font-medium lg:hidden">
       Major <span class="text-amber-400">A</span>ctivities
     </h2>
     <div class="flex w-full flex-col justify-around lg:flex-row">
@@ -80,7 +80,7 @@ const activities = [
         />
       </div>
 
-      <ul class="flex flex-col gap-8 p-4">
+      <ul class="flex flex-col gap-2 p-4 lg:gap-4">
         {
           activities.map(
             ({ title, image, padding, id, description }, index) => (
@@ -171,7 +171,7 @@ const activities = [
 
   const outSequence: AnimationSequence = [
     ["#third-section", { pointerEvents: "none" }],
-    ["#third-section-content", { opacity: [1, 0] }, { duration: 0.3 }],
+    ["#third-section-content", { opacity: [1, 0] }, { duration: 0.2 }],
   ];
 
   inView(

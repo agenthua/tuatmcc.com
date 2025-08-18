@@ -4,6 +4,7 @@ import Navbar from "@components/Navbar.astro";
 import Pagination from "@components/pages/posts/Pagination.astro";
 import PostItem from "@components/pages/posts/PostItem.astro";
 import Search from "@components/pages/posts/Search.astro";
+import Tag from "@components/Tag.astro";
 import GlobalLayout from "@layouts/GlobalLayout.astro";
 import type { Page } from "astro";
 import { Icon } from "astro-icon/components";
@@ -28,7 +29,7 @@ const { page, tags, tag } = Astro.props;
       <div class="row-start-1 h-fit">
         <div class="flex items-center justify-between">
           <h1 class="font-orbitron text-4xl font-medium">
-            {tag === "news" ? "News" : "Posts"}
+            {tag === "news" ? "News" : tag === "blog" ? "Blog" : "Posts"}
           </h1>
           <button
             type="button"
@@ -48,7 +49,18 @@ const { page, tags, tag } = Astro.props;
             </div>
           </dialog>
         </div>
-        <p>{tag && `'${tag}'の`}記事一覧</p>
+        <p class="mt-2">
+          {
+            tag && tag !== "news" && tag !== "blog" ? (
+              <div class="flex">
+                <Tag>{tag}</Tag>
+                の記事一覧
+              </div>
+            ) : (
+              <div>記事一覧 </div>
+            )
+          }
+        </p>
       </div>
 
       <div class="hidden self-start lg:flex">
