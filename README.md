@@ -8,6 +8,7 @@ MCC homepage built with [Astro](https://astro.build/) and [Bun](https://bun.sh/)
 
 - [x] Markdown Posts ([dedicated content repository](https://github.com/tuatmcc/hp-md-content))
 - [x] Dark mode support
+- [x] Redirects from old URLs
 - [ ] Workshop Materials
 - [ ] Content Management System
 
