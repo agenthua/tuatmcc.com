@@ -218,6 +218,7 @@ const mccfetchProperties = [
     type AnimationSequence,
     stagger,
     steps,
+    scroll,
   } from "motion";
 
   const inSequence: AnimationSequence = [
@@ -239,15 +240,18 @@ const mccfetchProperties = [
 
   const outSequence: AnimationSequence = [
     ["#second-section", { pointerEvents: "none" }],
-    ["#second-section-content", { opacity: [1, 0] }, { duration: 0.2 }],
+    ["#second-section-content", { opacity: [1, 0] }, { duration: 0.1, at: 0 }],
   ];
 
   inView(
     "#second-section",
-    (element) => {
-      animate(inSequence);
+    (_element) => {
+      const animation = animate(inSequence);
 
-      return () => animate(outSequence);
+      return () => {
+        animation.stop();
+        animate(outSequence);
+      };
     },
     {
       margin: "-50% 0px -50% 0px",

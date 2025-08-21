@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+import WordmarkLogo from "@assets/wordmark-logo.svg";
+
+const links = [
+  {
+    href: "https://x.com/tuatmcc",
+    icon: "ri:twitter-x-fill",
+    label: "TUATMCC",
+  },
+  {
+    href: "https://x.com/tuatkyopro",
+    icon: "ri:twitter-x-fill",
+    label: "競プロ",
+  },
+  {
+    href: "https://github.com/tuatmcc",
+    icon: "ri:github-fill",
+    label: "GitHub",
+  },
+];
+---
+
+<footer
+  class:list={[
+    "footer sm:footer-horizontal text-gray-50 z-1 bg-gray-800 p-12 pt-20",
+    "[clip-path:polygon(0_32px,0_100%,100%_100%,100%_32px,calc(70%+32px)_32px,70%_0,30%_0,calc(30%-32px)_32px)]",
+  ]}
+>
+  <aside>
+    <WordmarkLogo />
+    <p>マイクロコンピュータクラブ</p>
+  </aside>
+  <nav>
+    <h6 class="footer-title">Social</h6>
+    <div class="grid grid-flow-col gap-4">
+      {
+        links.map(({ href, icon, label }) => (
+          <div class="tooltip" data-tip={label}>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+            >
+              <Icon name={icon} class="h-6 w-6" />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </nav>
+</footer>

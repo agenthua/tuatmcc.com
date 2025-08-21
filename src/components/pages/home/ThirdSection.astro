@@ -171,15 +171,18 @@ const activities = [
 
   const outSequence: AnimationSequence = [
     ["#third-section", { pointerEvents: "none" }],
-    ["#third-section-content", { opacity: [1, 0] }, { duration: 0.2 }],
+    ["#third-section-content", { opacity: [1, 0] }, { duration: 0.1, at: 0 }],
   ];
 
   inView(
     "#third-section",
     (_element) => {
-      animate(inSequence);
+      const animation = animate(inSequence);
 
-      return () => animate(outSequence);
+      return () => {
+        animation.stop();
+        animate(outSequence);
+      };
     },
     {
       margin: "-50% 0px -50% 0px",
