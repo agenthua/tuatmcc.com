@@ -31,15 +31,6 @@ export default defineConfig({
     remarkPlugins: [remarkToc, remarkNormalizeHeadings, remarkMath],
     rehypePlugins: [rehypeKatex],
   },
-  env: {
-    schema: {
-      GOOGLE_ANALYTICS_ID: envField.string({
-        context: "client",
-        access: "public",
-        optional: true,
-      }),
-    },
-  },
   image: {
     layout: "constrained",
   },
@@ -55,5 +46,24 @@ export default defineConfig({
         cssVariable: "--font-family-orbitron",
       },
     ],
+  },
+  env: {
+    schema: {
+      GOOGLE_ANALYTICS_ID: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
+      DISCORD_INVITE: envField.string({
+        context: "server",
+        access: "secret",
+        optional: false,
+      }),
+      TUAT_CIDR: envField.string({
+        context: "server",
+        access: "secret",
+        optional: false,
+      }),
+    },
   },
 });

@@ -1,5 +1,8 @@
 ---
+import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
+import Footer from "@components/Footer.astro";
 import FirstSection from "@components/pages/home/FirstSection.astro";
+import ForthSection from "@components/pages/home/ForthSection.astro";
 import SecondSection from "@components/pages/home/SecondSection.astro";
 import ThirdSection from "@components/pages/home/ThirdSection.astro";
 import GlobalLayout from "../layouts/GlobalLayout.astro";
@@ -10,5 +13,14 @@ import GlobalLayout from "../layouts/GlobalLayout.astro";
     <FirstSection />
     <SecondSection />
     <ThirdSection />
+    <ForthSection />
+    <Footer />
   </main>
 </GlobalLayout>
+
+<style define:vars={{ background: `url(${backgroundPattern.src})` }}>
+  main {
+    background-image: var(--background);
+    background-repeat: repeat;
+  }
+</style>

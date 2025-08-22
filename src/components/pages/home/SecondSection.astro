@@ -2,7 +2,6 @@
 import Line1 from "@assets/decorations/line_1.svg";
 import Line2 from "@assets/decorations/line_2.svg";
 import Line4 from "@assets/decorations/line_4.svg";
-import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
 import Logo from "@assets/logo.svg";
 import { Icon } from "astro-icon/components";
 
@@ -78,7 +77,7 @@ const mccfetchProperties = [
           class="absolute -top-16 left-4 w-100 text-gray-600 xl:w-160 dark:text-gray-400"
         />
         <Line4
-          class="absolute -bottom-16 left-4 w-100 text-gray-400 xl:w-160 dark:text-gray-400"
+          class="absolute -bottom-16 left-4 w-100 text-gray-300 xl:w-160 dark:text-gray-600"
         />
       </p>
 
@@ -89,7 +88,7 @@ const mccfetchProperties = [
               <a
                 href={href}
                 class:list={[
-                  "group hover:text-primary relative flex items-center overflow-hidden bg-transparent px-4 py-2 text-xl text-nowrap text-gray-100 lg:text-2xl",
+                  "group btn btn-xl hover:text-primary relative flex items-center overflow-hidden bg-transparent text-nowrap text-gray-100 lg:text-2xl",
                   "[clip-path:polygon(0_0,0_100%,calc(100%-20px)_100%,100%_calc(100%-20px),100%_0)]",
                 ]}
               >
@@ -169,11 +168,7 @@ const mccfetchProperties = [
   </div>
 </section>
 
-<style define:vars={{ background: `url(${backgroundPattern.src})` }}>
-  #second-section {
-    background-image: var(--background);
-    background-repeat: repeat;
-  }
+<style>
   .group {
     .group-hover {
       background-position: 100% 0;
@@ -218,7 +213,6 @@ const mccfetchProperties = [
     type AnimationSequence,
     stagger,
     steps,
-    scroll,
   } from "motion";
 
   const inSequence: AnimationSequence = [

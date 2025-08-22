@@ -1,0 +1,58 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<section
+  id="forth-section"
+  class="pointer-events-none relative h-lvh w-full overflow-hidden"
+>
+  <div id="forth-section-content" class="fixed top-0 h-svh w-full opacity-0">
+    <h1 class="font-orbitron p-8 text-4xl font-medium">Recruit</h1>
+
+    <div class="flex flex-col items-start gap-8 p-8">
+      <p class="">
+        東京農工大学マイクロコンピュータークラブでは、部員を随時募集しています。
+      </p>
+
+      <p class="">
+        MCCのDiscordサーバーに参加して、新歓イベントに参加したり、活動の様子を覗いてみましょう。農工大生であれば参加可能です。
+      </p>
+
+      <a href="/join/discord" class="btn btn-primary">
+        <Icon name="ri:discord-fill" class="h-6 w-6" />
+        Join our Discord
+      </a>
+    </div>
+  </div>
+</section>
+
+<style></style>
+
+<script>
+  import { inView, animate, type AnimationSequence } from "motion";
+
+  const inSequence: AnimationSequence = [
+    ["#forth-section", { pointerEvents: "auto" }],
+    ["#forth-section-content", { opacity: [0, 1] }, { duration: 0.5, at: 0 }],
+  ];
+
+  const outSequence: AnimationSequence = [
+    ["#forth-section", { pointerEvents: "none" }],
+    ["#forth-section-content", { opacity: [1, 0] }, { duration: 0.1, at: 0 }],
+  ];
+
+  inView(
+    "#forth-section",
+    (_element) => {
+      const animation = animate(inSequence);
+
+      return () => {
+        animation.stop();
+        animate(outSequence);
+      };
+    },
+    {
+      margin: "-50% 0px -50% 0px",
+    },
+  );
+</script>

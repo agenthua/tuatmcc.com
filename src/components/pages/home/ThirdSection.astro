@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import Line3 from "@assets/decorations/line_3.svg";
-import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
 import campImage from "@assets/images/activities_camp.webp";
 import ltImage from "@assets/images/activities_lt.webp";
 import workshopImage from "@assets/images/activities_workshop.webp";
@@ -45,6 +44,14 @@ const activities = [
     padding: "lg:pr-32 lg:pl-0",
     id: "ac5",
   },
+  {
+    title: "その他",
+    description:
+      "部員の興味に応じて、様々な活動を行っています。興味のある活動があれば、ぜひ提案してください！",
+    image: campImage,
+    padding: "lg:pr-40 lg:pl-0",
+    id: "ac6",
+  },
 ];
 ---
 
@@ -54,9 +61,9 @@ const activities = [
 >
   <div
     id="third-section-content"
-    class="lg:pt-navbar fixed inset-0 flex h-svh flex-col opacity-0 lg:gap-8"
+    class="fixed inset-0 flex h-svh flex-col justify-center opacity-0 lg:gap-8"
   >
-    <h2 class="font-orbitron p-4 pt-8 text-4xl font-medium lg:hidden">
+    <h2 class="font-orbitron p-4 text-4xl font-medium lg:hidden">
       Major <span class="text-amber-400">A</span>ctivities
     </h2>
     <div class="flex w-full flex-col justify-around lg:flex-row">
@@ -64,7 +71,9 @@ const activities = [
         <h2
           class="font-orbitron hidden p-4 font-medium lg:inline-block lg:text-5xl"
         >
-          Major <span class="pl-16 text-amber-400 xl:p-0">A</span>ctivities
+          Major
+          <br class="inline-block xl:hidden" />
+          <span class="pl-16 text-amber-400 xl:p-0">A</span>ctivities
         </h2>
         <p
           id="third-section-description"
@@ -76,11 +85,11 @@ const activities = [
           また立ち上げることも可能です。
         </p>
         <Line3
-          class="absolute bottom-8 left-8 -z-1 text-gray-800 lg:bottom-24 lg:left-16 dark:text-gray-200"
+          class="absolute bottom-8 left-8 -z-1 text-gray-700 lg:bottom-24 lg:left-16 dark:text-gray-200"
         />
       </div>
 
-      <ul class="flex flex-col gap-2 p-4 lg:gap-4">
+      <ul class="flex min-h-150 flex-col gap-2 p-4 lg:min-h-160 lg:gap-4">
         {
           activities.map(
             ({ title, image, padding, id, description }, index) => (
@@ -115,11 +124,11 @@ const activities = [
                           {title}
                         </div>
                         <div class="collapse-content">
-                          <p class="relative text-gray-50 lg:h-20 lg:w-100">
+                          <p class="relative h-20 text-gray-50 lg:h-20 lg:w-100">
                             {description}
                           </p>
                         </div>
-                        <div class="after:from-primary after:to-secondary absolute inset-0 -z-1 duration-200 after:absolute after:inset-0 after:bg-gradient-to-br after:opacity-50 peer-checked:after:opacity-65">
+                        <div class="after:from-primary/70 after:to-secondary/50 peer-checked:after:from-primary/90 absolute inset-0 -z-1 duration-200 after:absolute after:inset-0 after:bg-gradient-to-br">
                           <Image
                             alt=""
                             src={image}
@@ -148,24 +157,17 @@ const activities = [
   </div>
 </section>
 
-<style define:vars={{ background: `url(${backgroundPattern.src})` }}>
-  #third-section {
-    background-image: var(--background);
-    background-repeat: repeat;
-  }
-</style>
-
 <script>
   import { inView, animate, type AnimationSequence, stagger } from "motion";
 
   const inSequence: AnimationSequence = [
     ["#third-section", { pointerEvents: "auto" }],
     ["#third-section-content", { opacity: [0, 1] }, { duration: 0.5, at: 0 }],
-    ["#third-section-description", { opacity: [0, 1] }, { duration: 0.3 }],
+    ["#third-section-description", { opacity: [0, 1] }, { duration: 0.2 }],
     [
       ".activity-card",
       { transform: ["translateX(160px)", "translateX(0)"], opacity: [0, 1] },
-      { duration: 0.3, delay: stagger(0.1) },
+      { duration: 0.2, delay: stagger(0.1), at: 0.2 },
     ],
   ];
 

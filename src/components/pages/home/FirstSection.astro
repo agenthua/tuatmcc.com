@@ -5,7 +5,7 @@ import animatedLogo from "/public/images/animated_mcc.webp";
 ---
 
 <section id="first-section" class="relative h-lvh w-full overflow-hidden">
-  <div class="grid h-lvh w-full place-content-center">
+  <div class="bg-base-100 grid h-lvh w-full place-content-center">
     <div class="flex flex-col items-center justify-center gap-8">
       <div id="wordmark-logo" class="flex items-center gap-0">
         <div class="grid grid-cols-1 grid-rows-1">
@@ -45,7 +45,7 @@ import animatedLogo from "/public/images/animated_mcc.webp";
   </div>
 
   <script>
-    import { animate, type AnimationSequence } from "motion";
+    import { animate, type AnimationSequence, inView } from "motion";
 
     const sequence: AnimationSequence = [
       ["#mcc-text", { width: 412 }, { duration: 0.5, delay: 3 }],
@@ -63,5 +63,22 @@ import animatedLogo from "/public/images/animated_mcc.webp";
     ];
 
     animate(sequence);
+
+    inView(
+      "#first-section",
+      (_element) => {
+        animate("#first-section", {
+          opacity: [0, 1],
+        });
+        return () => {
+          animate("#first-section", {
+            opacity: [1, 0],
+          });
+        };
+      },
+      {
+        margin: "-50% 0px 0px 0px",
+      },
+    );
   </script>
 </section>

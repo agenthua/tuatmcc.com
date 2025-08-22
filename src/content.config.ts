@@ -13,14 +13,16 @@ const posts = defineCollection({
   }),
 });
 
-const workshops = defineCollection({
-  loader: github("**/*.md", "./content/workshops"),
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-    author: z.string().optional(),
-    authors: z.string().array().optional(),
-  }),
-});
+export const collections = { posts };
 
-export const collections = { posts, workshops };
+// const workshops = defineCollection({
+//   loader: github("**/*.md", "./content/workshops"),
+//   schema: z.object({
+//     title: z.string(),
+//     date: z.date(),
+//     author: z.string().optional(),
+//     authors: z.string().array().optional(),
+//   }),
+// });
+//
+// export const collections = { posts, workshops };

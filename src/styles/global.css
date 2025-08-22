@@ -18,8 +18,8 @@
   --color-base-200: var(--color-gray-300);
   --color-base-300: var(--color-gray-600);
   --color-info: var(--color-secondary);
-  --radius-field: 0;
-  --radius-box: 0;
+  --radius-field: 2px;
+  --radius-box: 2px;
   --border: 0;
   --radius-selector: var(--radius-sm);
 }
@@ -54,7 +54,7 @@
 
 @layer base {
   .font-outline {
-    -webkit-text-stroke: 1px var(--color-gray-400);
+    -webkit-text-stroke: 1px var(--color-gray-300);
   }
 
   .dark {
