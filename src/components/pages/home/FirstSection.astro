@@ -45,7 +45,7 @@ import animatedLogo from "/public/images/animated_mcc.webp";
   </div>
 
   <script>
-    import { animate, type AnimationSequence, inView } from "motion";
+    import { animate, type AnimationSequence, scroll } from "motion";
 
     const sequence: AnimationSequence = [
       ["#mcc-text", { width: 412 }, { duration: 0.5, delay: 3 }],
@@ -64,20 +64,13 @@ import animatedLogo from "/public/images/animated_mcc.webp";
 
     animate(sequence);
 
-    inView(
-      "#first-section",
-      (_element) => {
-        animate("#first-section", {
-          opacity: [0, 1],
-        });
-        return () => {
-          animate("#first-section", {
-            opacity: [1, 0],
-          });
-        };
-      },
+    scroll(
+      animate("#first-section", {
+        opacity: [1, 0],
+      }),
       {
-        margin: "-50% 0px 0px 0px",
+        target: document.querySelector("#second-section")!,
+        offset: ["start end", "center end"],
       },
     );
   </script>

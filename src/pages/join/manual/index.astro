@@ -1,9 +1,19 @@
 ---
+export const prerender = false;
+
 import { Image } from "astro:assets";
+import { TUAT_CIDR } from "astro:env/server";
 import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
 import evaPattern from "@assets/decorations/slash.svg";
 import studentHub from "@assets/images/discord-student-hubs.png";
+import { inCidr } from "@libs/inCidr";
+import { Icon } from "astro-icon/components";
 import GlobalLayout from "../../../layouts/GlobalLayout.astro";
+
+const headers = Astro.request.headers;
+
+const ip = headers.get("CF-Connecting-IP") ?? "";
+const verified = inCidr(ip, TUAT_CIDR);
 ---
 
 <GlobalLayout title="MCC - マイクロコンピュータークラブ">
@@ -21,33 +31,52 @@ import GlobalLayout from "../../../layouts/GlobalLayout.astro";
       </p>
 
       農工大生であればどなたでも参加可能ですが、
-      セキュリティの観点から、当サイトでは招待リンクを公開していません。代わりに、以下いずれかの方法で参加することができます。
-      <ul class="rounded-box list gap-2">
-        <li class="collapse-arrow bg-base-100 collapse shadow-sm">
+      セキュリティの観点から、当サイトでは招待リンクを一般公開していません。代わりに、以下いずれかの方法で参加することができます。
+      <ul class="rounded-box list max-w-2xl gap-2">
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="flex gap-4 p-4 font-bold">
+            招待リンクを踏む(学内LAN限定)
+            {
+              verified ? (
+                <a href="/join/discord" class="btn btn-primary btn-xs">
+                  <Icon name="ri:discord-fill" class="h-4 w-4" />
+                  Join our Discord
+                </a>
+              ) : (
+                <buttton class="btn btn-primary btn-xs" disabled>
+                  <Icon name="ri:discord-fill" class="h-4 w-4" />
+                  Join our Discord
+                </buttton>
+              )
+            }
+          </div>
+        </li>
+
+        <li
+          class="collapse-arrow bg-base-100 border-primary collapse border-l-8 shadow-sm"
+        >
           <input type="checkbox" />
-          <div class="collapse-title">
+          <div class="collapse-title p-4 font-bold">
             Discrod の Student Hubs から農工大サーバーに入る
           </div>
-          <div class="collapse-content">
-            <Image alt="discord-student-hub" src={studentHub} />
+          <div class="collapse-content flex flex-col gap-4">
             以下の写真のような手順で進み、大学のメールアドレスを入力することで、農工大サーバーに参加でき、農工大のサーバー一覧からMCCサーバーに入ることが可能です。
+            <Image alt="discord-student-hub" src={studentHub} />
           </div>
         </li>
 
-        <li class="bg-base-100 shadow-sm">
-          <div class="collapse-title">新歓イベントに参加する</div>
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="p-4 font-bold">新歓イベントに参加する</div>
         </li>
 
-        <li class="bg-base-100 shadow-sm">
-          <div class="collapse-title">
-            MCC の公式 X(旧Twitter) に DM で連絡し、招待リンクをもらう
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="p-4 font-bold">
+            MCC の公式 X(旧Twitter) に DM で連絡する
           </div>
         </li>
 
-        <li class="bg-base-100 shadow-sm">
-          <div class="collapse-title">
-            既存部員に声をかけ、招待リンクをもらう
-          </div>
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="p-4 font-bold">部員に声をかける</div>
         </li>
       </ul>
       Discord に参加すると入部フォームがあるので、そちらを提出することで部員となることができます。

@@ -36,6 +36,15 @@ export default defineConfig({
   },
   adapter: cloudflare({
     platformProxy: { enabled: true },
+    routes: {
+      extend: {
+        include: [
+          {
+            pattern: "/join/*",
+          },
+        ],
+      },
+    },
   }),
   experimental: {
     fonts: [
