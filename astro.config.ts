@@ -35,16 +35,8 @@ export default defineConfig({
     layout: "constrained",
   },
   adapter: cloudflare({
+    imageService: "compile",
     platformProxy: { enabled: true },
-    routes: {
-      extend: {
-        include: [
-          {
-            pattern: "/join/*",
-          },
-        ],
-      },
-    },
   }),
   experimental: {
     fonts: [
