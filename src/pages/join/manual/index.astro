@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import backgroundPattern from "@assets/decorations/pattern_matrix.svg";
+import evaPattern from "@assets/decorations/slash.svg";
+import studentHub from "@assets/images/discord-student-hubs.png";
+import GlobalLayout from "../../../layouts/GlobalLayout.astro";
+---
+
+<GlobalLayout title="MCC - マイクロコンピュータークラブ">
+  <main class="relative grid gap-8">
+    <div>
+      <h1 class="font-orbitron p-8 text-4xl font-bold">Recruit</h1>
+      <h2 class="font-orbitron bg-base-100 px-8 text-xl font-bold">
+        新入部員募集
+      </h2>
+    </div>
+
+    <div class="flex flex-col items-start gap-8 p-8">
+      <p>
+        MCC の Discord サーバーに参加して、新歓イベントや活動に参加しましょう。
+      </p>
+
+      農工大生であればどなたでも参加可能ですが、
+      セキュリティの観点から、当サイトでは招待リンクを一般公開していません。代わりに、以下いずれかの方法で参加することができます。
+      <ul class="rounded-box list max-w-2xl gap-2">
+        <li
+          class="collapse-arrow bg-base-100 border-primary collapse border-l-8 shadow-sm"
+        >
+          <input type="checkbox" />
+          <div class="collapse-title p-4 font-bold">
+            Discrod の Student Hubs から農工大サーバーに入る
+          </div>
+          <div class="collapse-content flex flex-col gap-4">
+            <a
+              href="https://discord.com/student-hubs"
+              class="link link-secondary"
+              target="_blank"
+              rel="noopener noreferrer">https://discord.com/student-hubs</a
+            >
+            以下の写真のような手順で進み、大学のメールアドレスを入力することで、農工大サーバーに参加でき、農工大のサーバー一覧からMCCサーバーに入ることが可能です。
+            <Image alt="discord-student-hub" src={studentHub} />
+          </div>
+        </li>
+
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="p-4 font-bold">新歓イベントに参加する</div>
+        </li>
+
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="p-4 font-bold">
+            MCC の公式 X(旧Twitter) に DM で連絡する
+          </div>
+        </li>
+
+        <li class="bg-base-100 border-primary border-l-8 shadow-sm">
+          <div class="p-4 font-bold">部員に声をかける</div>
+        </li>
+      </ul>
+      Discord に参加すると入部フォームがあるので、そちらを提出することで部員となることができます。
+      みなさんの参加をお待ちしています！
+    </div>
+  </main>
+</GlobalLayout>
+
+<style
+  define:vars={{
+    background: `url(${backgroundPattern.src})`,
+    evaline: `url(${evaPattern.src})`,
+  }}
+>
+  main {
+    background-image: var(--background);
+    background-repeat: repeat;
+  }
+
+  .slash {
+    background-image: var(--evaline);
+    background-repeat: repeat-x;
+  }
+</style>

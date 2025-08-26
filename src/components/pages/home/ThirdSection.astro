@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+import Line3 from "@assets/decorations/line_3.svg";
+import campImage from "@assets/images/activities_camp.webp";
+import ltImage from "@assets/images/activities_lt.webp";
+import workshopImage from "@assets/images/activities_workshop.webp";
+
+const activities = [
+  {
+    title: "合宿",
+    description:
+      "春・夏休みに2泊3日で、ハッカソンや競技プロの部内コンテストを行います。",
+    image: campImage,
+    padding: "lg:pr-0 lg:pl-48",
+    id: "ac1",
+  },
+  {
+    title: "コンテスト",
+    description:
+      "兢プロのオンラインコンテストやICPC、その他CTF等のコンテストに参加しています。",
+    image: campImage,
+    padding: "lg:pr-8 lg:pl-32",
+    id: "ac2",
+  },
+  {
+    title: "学祭ゲーム制作",
+    description:
+      "Unity等を用いて、チームで新たにゲームを制作・出展しています。",
+    image: campImage,
+    padding: "lg:pr-16 lg:pl-24",
+    id: "ac3",
+  },
+  {
+    title: "講習会",
+    description: "Unity, Git, Web等の部内講習会を行っています。",
+    image: workshopImage,
+    padding: "lg:pr-24 lg:pl-16",
+    id: "ac4",
+  },
+  {
+    title: "LT会",
+    description: "新歓LT会や他大学との技術交流LT会などを行っています",
+    image: ltImage,
+    padding: "lg:pr-32 lg:pl-8",
+    id: "ac5",
+  },
+  {
+    title: "その他",
+    description:
+      "部員の興味に応じて、様々な活動を行っています。興味のある活動があれば、ぜひ提案してください！",
+    image: campImage,
+    padding: "lg:pr-40 lg:pl-0",
+    id: "ac6",
+  },
+];
+---
+
+<section
+  id="third-section"
+  class="pointer-events-none relative h-lvh w-full overflow-hidden"
+>
+  <div
+    id="third-section-content"
+    class="fixed inset-0 flex h-svh flex-col justify-center opacity-0 lg:gap-8"
+  >
+    <h2 class="font-orbitron p-4 text-4xl font-medium lg:hidden">
+      Major <span class="text-amber-400">A</span>ctivities
+    </h2>
+    <div class="flex w-full flex-col justify-around lg:flex-row">
+      <div class="flex flex-col gap-8">
+        <h2
+          class="font-orbitron hidden p-4 font-medium lg:inline-block lg:text-5xl"
+        >
+          Major
+          <br class="inline-block xl:hidden" />
+          <span class="pl-16 text-amber-400 xl:p-0">A</span>ctivities
+        </h2>
+        <p
+          id="third-section-description"
+          class="relative p-4 lg:-mr-24 lg:pl-24 lg:text-lg"
+        >
+          MCCでは参加必須の活動はありません。<br />
+          自分の興味のある活動に参加し、
+          <br />
+          また立ち上げることも可能です。
+        </p>
+        <Line3
+          class="absolute bottom-8 left-8 -z-1 text-gray-700 lg:bottom-24 lg:left-16 dark:text-gray-200"
+        />
+      </div>
+
+      <ul class="flex min-h-150 flex-col gap-2 p-4 lg:min-h-160 lg:gap-4">
+        {
+          activities.map(
+            ({ title, image, padding, id, description }, index) => (
+              <li class:list={["activity-card relative", padding]}>
+                <div class="group relative h-full">
+                  <div
+                    id={id}
+                    class:list={[
+                      "bg-primary p-0.5 duration-200",
+                      "[clip-path:polygon(40px_0,0_40px,0_100%,calc(100%-40px)_100%,100%_calc(100%-40px),100%_0)]",
+                    ]}
+                  >
+                    <div
+                      class:list={[
+                        "bg-base-200 p-1",
+                        "[clip-path:polygon(39px_0,0_39px,0_100%,calc(100%-39px)_100%,100%_calc(100%-39px),100%_0)]",
+                      ]}
+                    >
+                      <div
+                        class:list={[
+                          "bg-base-100 collapse-plus collapse px-8 duration-200",
+                          "[clip-path:polygon(37px_0,0_37px,0_100%,calc(100%-37px)_100%,100%_calc(100%-37px),100%_0)]",
+                        ]}
+                      >
+                        <input
+                          type="radio"
+                          name="activities"
+                          class="peer"
+                          checked={index == 0}
+                        />
+                        <div class="collapse-title p-3 font-bold text-gray-50 lg:p-4 lg:text-xl">
+                          {title}
+                        </div>
+                        <div class="collapse-content">
+                          <p class="relative h-20 text-gray-50 lg:h-20 lg:w-100">
+                            {description}
+                          </p>
+                        </div>
+                        <div class="after:from-primary/70 after:to-secondary/50 peer-checked:after:from-primary/90 absolute inset-0 -z-1 duration-200 after:absolute after:inset-0 after:bg-gradient-to-br">
+                          <Image
+                            alt=""
+                            src={image}
+                            class="h-full w-full object-cover duration-200"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="font-orbitron font-outline absolute top-1/3 left-1/6 -z-1 text-8xl font-bold text-transparent"
+  >
+    Develop <br />
+    our skills, <br />
+    our friendship, <br />
+    our future.
+  </div>
+</section>
+
+<script>
+  import { inView, animate, type AnimationSequence, stagger } from "motion";
+
+  const inSequence: AnimationSequence = [
+    ["#third-section", { pointerEvents: "auto" }],
+    ["#third-section-content", { opacity: [0, 1] }, { duration: 0.5, at: 0 }],
+    ["#third-section-description", { opacity: [0, 1] }, { duration: 0.2 }],
+    [
+      ".activity-card",
+      { transform: ["translateX(160px)", "translateX(0)"], opacity: [0, 1] },
+      { duration: 0.2, delay: stagger(0.1), at: 0.2 },
+    ],
+  ];
+
+  const outSequence: AnimationSequence = [
+    ["#third-section", { pointerEvents: "none" }],
+    ["#third-section-content", { opacity: [1, 0] }, { duration: 0.1, at: 0 }],
+  ];
+
+  inView(
+    "#third-section",
+    (_element) => {
+      const animation = animate(inSequence);
+
+      return () => {
+        animation.stop();
+        animate(outSequence);
+      };
+    },
+    {
+      margin: "-50% 0px -50% 0px",
+    },
+  );
+</script>

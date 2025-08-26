@@ -1,0 +1,107 @@
+---
+import Circle from "@assets/decorations/circle.svg";
+import { Icon } from "astro-icon/components";
+---
+
+<section
+  id="forth-section"
+  class="pointer-events-none relative h-lvh w-full overflow-hidden"
+>
+  <div id="forth-section-content" class="fixed top-0 h-svh w-full opacity-0">
+    <div
+      class:list={[
+        "bg-base-content relative top-0 -z-1 h-32 w-full lg:h-48",
+        "[clip-path:polygon(0_0,0_calc(100%-32px),calc(30%-32px)_calc(100%-32px),30%_100%,70%_100%,calc(70%+32px)_calc(100%-32px),100%_calc(100%-32px),100%_0)]",
+      ]}
+    >
+      <div
+        class:list={[
+          "bg-base-100 absolute top-0 h-32 w-full lg:h-48",
+          "[clip-path:polygon(0_0,0_calc(100%-34px),calc(30%-31px)_calc(100%-34px),calc(30%+1px)_calc(100%-2px),calc(70%-1px)_calc(100%-2px),calc(70%+31px)_calc(100%-34px),100%_calc(100%-34px),100%_0)]",
+        ]}
+      >
+        <h1
+          class="font-orbitron p-6 pb-8 text-4xl font-medium lg:py-16 lg:text-5xl"
+        >
+          Recruit
+        </h1>
+      </div>
+    </div>
+
+    <div class="relative w-fit">
+      <div class="flex max-w-2xl flex-col items-start gap-8 p-4 lg:p-8">
+        <p class="">
+          東京農工大学マイクロコンピュータークラブでは、部員を随時募集しています。
+        </p>
+
+        <p class="">
+          MCCのDiscordサーバーに参加して、新歓イベントに参加したり、活動の様子を覗いてみましょう。農工大生であれば参加可能です。
+        </p>
+
+        <a href="/join/manual" class="btn btn-primary lg:hidden">
+          <Icon name="ri:discord-fill" class="h-6 w-6" />
+          Join our Discord
+        </a>
+      </div>
+    </div>
+
+    <a
+      href="/join/manual"
+      class="font-orbitron text-primary peer absolute bottom-1/2 left-1/2 hidden items-center px-8 py-2 text-xl font-medium lg:flex xl:text-2xl"
+    >
+      Join our Discord
+      <Icon
+        name="ri:arrow-right-line"
+        class="ml-2 inline h-8 w-8 align-middle"
+      />
+    </a>
+
+    <a
+      href="/join/manual"
+      aria-label="Join our Discord"
+      class="border-primary absolute top-1/2 left-[85%] hidden h-60 w-60 translate-x-[-50%] translate-y-[-50%] place-items-center rounded-full border duration-200 peer-hover:scale-105 hover:scale-105 lg:grid"
+    >
+      <Circle class="text-primary absolute h-72 w-72 animate-spin opacity-40" />
+      <div class="border-primary absolute inset-1 rounded-full border-8"></div>
+      <Icon name="ri:discord-fill" class="text-primary h-32 w-32" />
+    </a>
+
+    <div
+      class="bg-primary absolute right-[calc(15%+120px)] bottom-1/2 left-1/2 -z-1 hidden h-1 lg:block"
+    >
+    </div>
+    <div
+      class="bg-primary absolute right-[calc(15%+120px)] bottom-1/2 left-1/2 -z-1 hidden h-2 opacity-20 duration-200 peer-hover:h-6 lg:block"
+    >
+    </div>
+  </div>
+</section>
+
+<script>
+  import { inView, animate, type AnimationSequence } from "motion";
+
+  const inSequence: AnimationSequence = [
+    ["#forth-section", { pointerEvents: "auto" }],
+    ["#forth-section-content", { opacity: [0, 1] }, { duration: 0.5, at: 0 }],
+  ];
+
+  const outSequence: AnimationSequence = [
+    ["#forth-section", { pointerEvents: "none" }],
+    ["#forth-section-content", { opacity: [1, 0] }, { duration: 0.1, at: 0 }],
+  ];
+
+  inView(
+    "#forth-section",
+    (_element) => {
+      const animation = animate(inSequence);
+
+      return () => {
+        animation.stop();
+        animate(outSequence);
+      };
+    },
+    {
+      margin: "-50% 0px -50% 0px",
+    },
+  );
+</script>

@@ -1,0 +1,137 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import Navbar from "@components/Navbar.astro";
+import PostDetailHeader from "@components/pages/posts/PostDetailHeader.astro";
+import { Icon } from "astro-icon/components";
+import GlobalLayout from "./GlobalLayout.astro";
+
+export interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { title } = post.data;
+
+const titleText = `${title} | MCCマイクロコンピュータークラブ`;
+const ogImage = `${Astro.site}/posts/${post.id}/og-image.png`;
+const { Content, headings } = await render(post);
+
+const authors: string[] = post.data.author
+  ? [post.data.author]
+  : post.data.authors
+    ? post.data.authors
+    : [];
+---
+
+<GlobalLayout title={titleText} ogImage={ogImage}>
+  <link
+    slot="head"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    rel="stylesheet"
+  />
+
+  <Navbar />
+  <div class="mx-auto flex max-w-5xl gap-8">
+    <article
+      class="mx-auto flex w-3xl max-w-dvw flex-1 flex-col gap-12 px-4 py-8"
+    >
+      <PostDetailHeader data={post.data} />
+      <div
+        class:list={[
+          "prose dark:prose-invert overflow-hidden",
+          "prose-h1:border-l-12 prose-h1:border-primary prose-h1:pl-3 prose-h1:border-b-2 prose-h1:text-2xl",
+          "prose-h2:border-l-8 prose-h2:border-primary prose-h2:pl-2 prose-h2:border-b-2",
+          "prose-h3:border-primary prose-h3:border-l-4 prose-h3:pl-2",
+          "prose-code:rounded-sm",
+        ]}
+      >
+        <Content />
+      </div>
+      <div class="flex flex-col gap-4 py-8 pb-24">
+        <div class="flex flex-wrap gap-2">
+          {
+            authors.map((author) => (
+              <a
+                href={`https://github.com/${author}`}
+                aria-label="author's github profile"
+                class="hover:bg-base-200 flex cursor-pointer items-center gap-1 rounded-sm border p-2 text-xs duration-200"
+              >
+                <Icon name="ri:github-fill" class="h-4 w-4" />
+                <span>{author}</span>
+              </a>
+            ))
+          }
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <a
+              class="hover:bg-base-200 cursor-pointer rounded-sm p-2 duration-200"
+              href={`https://x.com/intent/tweet?text=${encodeURIComponent(
+                titleText,
+              )}&url=${encodeURIComponent(Astro.site + post.id)}`}
+              aria-label="Share on X"
+            >
+              <Icon name="ri:twitter-x-fill" class="h-6 w-6" />
+            </a>
+            <button
+              class="hover:bg-base-200 cursor-pointer rounded-sm p-2 duration-200"
+              onclick="navigator.clipboard.writeText(location.href)"
+              aria-label="copy link to clipboard"
+            >
+              <Icon name="ri:link-m" class="h-6 w-6" />
+            </button>
+          </div>
+          <div class="flex items-center gap-4">
+            <a
+              class="hover:bg-base-200 cursor-pointer rounded-sm p-2 duration-200"
+              href={`https://github.com/tuatmcc/hp-md-content/edit/main/posts/${post.id}/index.md`}
+              aria-label="Edit on GitHub"
+            >
+              <Icon name="ri:code-s-slash-fill" class="h-6 w-6" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div
+      class="top-navbar-with-margin border-primary sticky hidden max-h-120 flex-col gap-4 border-l lg:flex"
+    >
+      <h1 class="border-primary border-b px-2 py-1 text-lg font-bold">目次</h1>
+      <div class="flex flex-col gap-2 overflow-y-auto pl-4">
+        {
+          headings.map(({ depth, text, slug }) => (
+            <a
+              href={`#${slug}`}
+              class:list={[
+                "text-sm hover:underline",
+                depth === 3 ? "ml-4" : "",
+                depth > 3 ? "hidden" : "flex",
+              ]}
+            >
+              {text}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</GlobalLayout>
+
+<script is:inline>
+  // Smooth scroll to anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop - 80, // Adjust for fixed header height
+          behavior: "smooth",
+        });
+      }
+    });
+  });
+</script>

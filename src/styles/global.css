@@ -1,42 +1,73 @@
 @import "tailwindcss";
-@theme {
-  /* Brand Colors */
-  --mcc-color-1: #06c; /* Royal Blue */
-  --mcc-color-2: #0092e6; /* Blue */
-  --mcc-color-3: #00b6d8; /* Cyan */
-  --mcc-color-4: #00d4af; /* Turquoise */
-  --mcc-color-5: #85eb83; /* Light Green */
-  --mcc-color-6: #f9f871; /* Lemon Yellow */
-  --color-mcc-1: #06c; /* Royal Blue */
-  --color-mcc-2: #0092e6; /* Blue */
-  --color-mcc-3: #00b6d8; /* Cyan */
-  --color-mcc-4: #00d4af; /* Turquoise */
-  --color-mcc-5: #85eb83; /* Light Green */
-  --color-mcc-6: #f9f871; /* Lemon Yellow */
 
-  /* Gray (From Chakra UI) */
-  --color-gray-0: #fff;
-  --color-gray-1000: #000;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  /* Utility Colors */
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
 
-  /* Size */
-  --navbar-height: 56px;
-  --scrollbar-width: 10px;
-  --font-size-navbar: 36px;
-  --article-max-width: 900px;
-
-  /* Font Family is defined in layout.tsx */
+  --color-primary: var(--color-blue-600);
+  --color-primary-content: var(--color-gray-50);
+  --color-secondary: var(--color-sky-500);
+  --color-base-100: var(--color-gray-50);
+  --color-base-200: var(--color-gray-300);
+  --color-base-300: var(--color-gray-600);
+  --color-info: var(--color-secondary);
+  --radius-field: 2px;
+  --radius-box: 2px;
+  --border: 0;
+  --radius-selector: var(--radius-sm);
 }
 
-@theme inline {
-  --shadow-neumorphism: 4px 4px 8px var(--color-gray-300), -4px -4px 8px
-    var(--color-gray-0);
-  --shadow-neumorphism-hover: 6px 6px 12px var(--color-gray-400), -6px -6px 12px
-    var(--color-gray-0);
-  --shadow-neumorphism-inset: inset 4px 4px 8px var(--color-gray-300), inset
-    -4px -4px 8px var(--color-gray-0);
-  --color-gradient-mcc: var(--color-mcc-1), var(--color-mcc-2),
-    var(--color-mcc-3), var(--color-mcc-4), var(--color-mcc-5),
-    var(--color-mcc-6);
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+
+  --color-primary: var(--color-blue-600);
+  --color-primary-content: var(--color-gray-50);
+  --color-secondary: var(--color-sky-500);
+  --color-base-100: var(--color-gray-900);
+  --color-base-200: var(--color-gray-700);
+  --color-base-300: var(--color-gray-400);
+  --color-info: var(--color-secondary);
+  --radius-field: 0;
+  --radius-box: 0;
+  --border: 0;
+  --radius-selector: var(--radius-sm);
+}
+
+@theme {
+  --font-orbitron: var(--font-family-orbitron), sans-serif;
+  --shadow-bloom: 0 0 4px var(--color-secondary);
+  --drop-shadow-bloom: 0 0 4px var(--color-secondary);
+  --text-shadow-bloom: 0 0 4px var(--tw-text-shadow-color);
+  --color-divider: var(--color-gray-200);
+  --spacing-navbar: calc(var(--spacing) * 16);
+  --spacing-navbar-with-margin: calc(
+    var(--spacing-navbar) + var(--spacing) * 8
+  );
+}
+
+@layer base {
+  .font-outline {
+    -webkit-text-stroke: 1px var(--color-gray-300);
+  }
+
+  .dark {
+    --color-divider: var(--color-gray-600);
+
+    .font-outline {
+      -webkit-text-stroke: 1px var(--color-gray-700);
+    }
+  }
+
+  .expressive-code {
+    margin-block: 1.25em;
+  }
 }

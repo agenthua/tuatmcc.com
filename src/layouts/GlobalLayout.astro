@@ -1,0 +1,47 @@
+---
+import { GOOGLE_ANALYTICS_ID } from "astro:env/client";
+import NavDrawer from "../components/NavDrawer.astro";
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import ThemeContext from "@components/ThemeContext.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+
+export type Props = {
+  title: string;
+  ogImage?: string;
+};
+
+const { title, ogImage = "https://tuatmcc.com/images/og-image.png" } =
+  Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MCC" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>{title}</title>
+    {GOOGLE_ANALYTICS_ID && <GoogleAnalytics id={GOOGLE_ANALYTICS_ID} />}
+
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={Astro.site?.toString()} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <ThemeContext />
+    <slot name="head" />
+
+    <Font cssVariable="--font-family-orbitron" preload />
+  </head>
+  <body>
+    <NavDrawer>
+      <slot />
+    </NavDrawer>
+  </body>
+</html>

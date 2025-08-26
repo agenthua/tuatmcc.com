@@ -1,56 +1,47 @@
-<img align="center" src="./public/images/wordmark-logo.svg" width="100%" >
+# tuatmcc.com
 
-<p align="center">
-  <img alt="GitHub branch check runs" src="https://img.shields.io/github/check-runs/tuatmcc/tuatmcc.com/main?style=flat&label=deploy&link=https%3A%2F%2Ftuatmcc.com">
-  <img src="https://img.shields.io/github/languages/code-size/tuatmcc/homepage2.0?style=flat-square)](https://github.com/tuatmcc/homepage2.0">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/tuatmcc/tuatmcc.com">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/tuatmcc/tuatmcc.com">
-</p>
+## Overview
 
-<h1 align="center">tuatmcc.com</h1>
+MCC homepage built with [Astro](https://astro.build/) and [Bun](https://bun.sh/), Deployed on [Cloudflare Workers](https://developers.cloudflare.com/workers/).
 
+## Features
 
-## 環境構築
+- [x] Markdown Posts ([dedicated content repository](https://github.com/tuatmcc/hp-md-content))
+- [x] Dark mode support
+- [x] Redirects from old URLs
+- [ ] Workshop Materials
+- [ ] Content Management System
 
-### nix-direnv の場合
+## Setup
 
-```sh
-echo 'use flake' > .envrc
-direnv allow
-bun install
-```
-
-### mise の場合
+Clone repo and install bun with `mise`.
 
 ```sh
 mise install
-bun install
 ```
 
-## 開発
+## Development
+
+- Launch the development server
 
 ```sh
 bun dev
 ```
 
-```sh
-bun build
-```
+- Build the project
 
 ```sh
-bun preview
+bun run build
 ```
+
+- Run format
 
 ```sh
-bun lint
+bun format
 ```
+
+- Run type checks
 
 ```sh
-bun fmt
+bun typecheck
 ```
-
-## 関連リンク
-
-- [tuatmcc/hp-md-content](https://github.com/tuatmcc/hp-md-content)
-- [記事の書き方](https://www.tuatmcc.com/blog/2023-01-adding-articles)
-
