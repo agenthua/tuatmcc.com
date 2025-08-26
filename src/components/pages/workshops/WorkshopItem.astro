@@ -15,7 +15,7 @@ const authors: string[] = workshop.data.author
 
 <article class="group h-fit cursor-pointer duration-200">
   <a
-    href={workshop.data.firstSlug}
+    href={`/workshops/${workshop.id}/${workshop.data.firstSlug}`}
     class:list={[
       "from-secondary to-primary relative block bg-gradient-to-b p-[2px] pl-2",
       "[clip-path:polygon(0_0,0_100%,calc(100%-40px)_100%,100%_calc(100%-40px),100%_0)]",
