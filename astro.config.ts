@@ -32,10 +32,10 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex],
   },
   image: {
-    layout: "constrained",
+    // layout: "constrained",
   },
   adapter: cloudflare({
-    imageService: "cloudflare",
+    imageService: "passthrough",
     platformProxy: { enabled: true },
   }),
   experimental: {
