@@ -28,4 +28,6 @@ pnpm-debug.log*
 .direnv/
 /content/
 
-.bak
+# cloudflare
+worker-configuration.d.ts
+.wrangler/

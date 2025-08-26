@@ -13,16 +13,27 @@ const posts = defineCollection({
   }),
 });
 
-export const collections = { posts };
+const workshopCovers = defineCollection({
+  loader: github("*/index.md", "./content/workshops"),
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    draft: z.boolean().optional(),
+    author: z.string().optional(),
+    authors: z.string().array().optional(),
+    firstSlug: z.string().optional(),
+  }),
+});
 
-// const workshops = defineCollection({
-//   loader: github("**/*.md", "./content/workshops"),
-//   schema: z.object({
-//     title: z.string(),
-//     date: z.date(),
-//     author: z.string().optional(),
-//     authors: z.string().array().optional(),
-//   }),
-// });
-//
-// export const collections = { posts, workshops };
+const workshopPages = defineCollection({
+  loader: github(["*/*.md", "!*/index.md"], "./content/workshops"),
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
+export const collections = {
+  posts,
+  workshopCovers,
+  workshopPages,
+};

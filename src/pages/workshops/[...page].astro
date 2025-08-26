@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import WorkshopsLayout from "@layouts/WorkshopsLayout.astro";
+import { PAGINATION_PAGE_SIZE } from "@libs/constants";
+import type { GetStaticPathsOptions, Page } from "astro";
+
+export interface Props {
+  page: Page<CollectionEntry<"workshopCovers">>;
+  firstPageUrl: string;
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = (
+    await getCollection("workshopCovers", ({ data }) => !data.draft)
+  ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return paginate(posts, {
+    pageSize: PAGINATION_PAGE_SIZE,
+  });
+}
+
+const { page } = Astro.props;
+---
+
+<WorkshopsLayout page={page} />

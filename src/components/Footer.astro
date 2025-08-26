@@ -23,16 +23,16 @@ const links = [
 
 <footer
   class:list={[
-    "footer sm:footer-horizontal z-1 bg-gray-800 p-12 pt-20 text-gray-50",
+    "footer sm:footer-horizontal z-1 justify-center bg-gray-800 p-12 pt-20 text-gray-50 lg:gap-32",
     "[clip-path:polygon(0_32px,0_100%,100%_100%,100%_32px,calc(70%+32px)_32px,70%_0,30%_0,calc(30%-32px)_32px)]",
   ]}
 >
   <aside>
     <WordmarkLogo />
-    <p>マイクロコンピュータクラブ</p>
+    <p class="text-gray-300">マイクロコンピュータクラブ</p>
   </aside>
   <nav>
-    <h6 class="footer-title">Social</h6>
+    <h6 class="footer-title font-orbitron">Social</h6>
     <div class="grid grid-flow-col gap-4">
       {
         links.map(({ href, icon, label }) => (

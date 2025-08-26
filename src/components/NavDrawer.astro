@@ -6,6 +6,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/posts/tags/news", label: "News" },
   { href: "/posts/tags/blog", label: "Blog" },
+  { href: "/workshops", label: "Workshops" },
 ];
 
 const socialLinks = [
@@ -28,7 +29,7 @@ export interface Props {
     <label
       id="global-sidebar-toggle"
       for={drawerId}
-      class="fixed top-2 right-2 z-20 p-2 hover:cursor-pointer"
+      class="fixed top-2 right-2 z-10 p-2 hover:cursor-pointer"
       aria-label="toggle sidebar"
     >
       <Icon name="ri:menu-fill" class="h-8 w-8" />
@@ -49,6 +50,13 @@ export interface Props {
       <div
         class="relative flex flex-col overflow-y-hidden bg-gray-800 p-2 pl-16"
       >
+        <label
+          class="absolute top-0 right-0 z-20 h-16 w-16"
+          for={drawerId}
+          aria-label="close sidebar"
+        >
+          <Icon name="ri:close-fill" class="h-16 w-16 p-4 text-gray-50" />
+        </label>
         <TypoGraphy
           class="pointer-events-none absolute h-full w-auto py-4 text-gray-700"
         />

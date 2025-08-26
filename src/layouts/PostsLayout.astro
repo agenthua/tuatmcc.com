@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
 export interface Props {
   page: Page<CollectionEntry<"posts">>;
   tags: { name: string; count: number }[];
-  tag?: string;
+  tag?: string | undefined;
 }
 
 const { page, tags, tag } = Astro.props;

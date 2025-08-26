@@ -1,0 +1,214 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import WorkshopDrawer from "@components/pages/workshops/WorkshopDrawer.astro";
+import GlobalLayout from "@layouts/GlobalLayout.astro";
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  page: CollectionEntry<"workshopPages">;
+  pages: CollectionEntry<"workshopPages">[];
+}
+
+export async function getStaticPaths() {
+  const workshopPages = await getCollection("workshopPages");
+  const workshopPageParams = workshopPages.map((page) => {
+    const pages = workshopPages
+      .filter((p) => p.id.split("/")[0] === page.id.split("/")[0])
+      .sort((a, b) => (a.data.title ?? "").localeCompare(b.data.title ?? ""));
+    return {
+      params: {
+        workshopId: page.id.split("/")[0],
+        slug: page.id.split("/")[1],
+      },
+      props: { page, pages },
+    };
+  });
+  return workshopPageParams;
+}
+
+const { page, pages } = Astro.props;
+const { Content, headings } = await render(page);
+const currentPageIndex = pages.findIndex((p) => p.id === page.id);
+const totalPages = pages.length;
+---
+
+<GlobalLayout title={page.data.title}>
+  <link
+    slot="head"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    rel="stylesheet"
+  />
+
+  <WorkshopDrawer pages={pages} headings={headings} activePageId={page.id}>
+    <div class="flex flex-1">
+      <main class="mx-auto flex w-fit max-w-full flex-col gap-4 p-4">
+        <div class="pt-navbar-with-margin pb-24">
+          <h1 class="text-3xl font-bold">{page.data.title}</h1>
+        </div>
+        <article
+          class:list={[
+            "prose dark:prose-invert overflow-hidden",
+            "prose-h1:border-l-12 prose-h1:border-primary prose-h1:pl-3 prose-h1:border-b-2 prose-h1:text-2xl",
+            "prose-h2:border-l-8 prose-h2:border-primary prose-h2:pl-2 prose-h2:border-b-2",
+            "prose-h3:border-primary prose-h3:border-l-4 prose-h3:pl-2",
+            "prose-code:rounded-sm",
+          ]}
+        >
+          <Content />
+        </article>
+
+        <div class="border-base-300 mt-12 mb-8 border-t pt-8">
+          <div class="flex items-center justify-between">
+            {
+              currentPageIndex > 0 ? (
+                <a
+                  href={`/workshops/${pages[currentPageIndex - 1]?.id}`}
+                  class="btn btn-outline btn-primary"
+                >
+                  <Icon name="ri:arrow-left-line" class="h-4 w-4" />
+                  前のページ
+                </a>
+              ) : (
+                <div />
+              )
+            }
+
+            {
+              currentPageIndex < totalPages - 1 ? (
+                <a
+                  href={`/workshops/${pages[currentPageIndex + 1]?.id}`}
+                  class="btn btn-primary"
+                >
+                  次のページ
+                  <Icon name="ri:arrow-right-line" class="h-4 w-4" />
+                </a>
+              ) : (
+                <a href="/workshops" class="btn btn-success">
+                  <Icon name="ri:check-line" class="h-4 w-4" />
+                  完了
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </main>
+    </div>
+  </WorkshopDrawer>
+</GlobalLayout>
+
+<script>
+  // スムーススクロール
+  const tocLinks = document.querySelectorAll('a[href^="#"]');
+  tocLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href")?.substring(1);
+      if (targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          // モバイルの目次ドロップダウンを閉じる
+          const dropdown = link.closest(".dropdown");
+          if (dropdown) {
+            const button = dropdown.querySelector(
+              '[tabindex="0"]',
+            ) as HTMLElement;
+            if (button) button.blur();
+          }
+        }
+      }
+    });
+  });
+
+  // 現在のセクションをハイライト
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          // すべてのTOCリンクから active クラスを削除
+          document.querySelectorAll(".toc-link").forEach((link) => {
+            link.classList.remove(
+              "bg-primary",
+              "text-primary-content",
+              "shadow-md",
+              "scale-105",
+            );
+            link.classList.add("hover:bg-base-200");
+          });
+          // 対応するTOCリンクに active クラスを追加
+          document
+            .querySelectorAll(`a[href="#${id}"].toc-link`)
+            .forEach((link) => {
+              link.classList.add(
+                "bg-primary",
+                "text-primary-content",
+                "shadow-md",
+                "scale-105",
+              );
+              link.classList.remove("hover:bg-base-200");
+            });
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+      rootMargin: "-100px 0px -100px 0px",
+    },
+  );
+
+  // 見出し要素を観察
+  document.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+    if (heading.id) {
+      observer.observe(heading);
+    }
+  });
+</script>
+
+<style>
+  /* カスタムスタイル */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* プログレスバーのカスタマイズ */
+  .progress::-webkit-progress-bar {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .progress::-webkit-progress-value {
+    border-radius: 0.5rem;
+  }
+
+  /* スクロールバーのカスタマイズ */
+  .drawer-side aside::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .drawer-side aside::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .drawer-side aside::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  .drawer-side aside::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+</style>

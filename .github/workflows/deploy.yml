@@ -53,6 +53,16 @@ jobs:
           version="$(git rev-parse --short ${{ github.sha }})"
           echo "version=${version}" >> $GITHUB_OUTPUT
 
+      - name: Cache content repo
+        uses: actions/cache@v4
+        with:
+          path: |
+            content/.git
+            content
+          key: content-${{ hashFiles('package.json') }}-${{ runner.os }}
+          restore-keys: |
+            content-
+
       - name: Run | Build
         run: bun run build
 

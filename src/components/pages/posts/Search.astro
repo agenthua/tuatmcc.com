@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 
 export interface Props {
   tags: { name: string; count: number }[];
-  current?: string;
+  current: string | undefined;
 }
 
 const { tags, current } = Astro.props;
