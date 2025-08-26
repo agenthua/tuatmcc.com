@@ -35,7 +35,7 @@ export default defineConfig({
     layout: "constrained",
   },
   adapter: cloudflare({
-    imageService: "compile",
+    imageService: "cloudflare",
     platformProxy: { enabled: true },
   }),
   experimental: {
