@@ -33,17 +33,17 @@ const { page, tags, tag } = Astro.props;
           </h1>
           <button
             type="button"
-            class="btn btn-primary btn-outline lg:hidden"
+            class="btn lg:hidden"
             onclick="post_search_modal.showModal()"
           >
-            <Icon name="ri:arrow-left-double-fill" class="h-8 w-8" />
+            <Icon name="ri:filter-3-fill" class="h-8 w-8" />
           </button>
           <dialog id="post_search_modal" class="modal">
             <div class="modal-box">
               <Search tags={tags} current={tag} />
               <div class="modal-action">
                 <form method="dialog">
-                  <button class="btn">Close</button>
+                  <button class="btn font-orbitron font-medium tracking-wider">Close</button>
                 </form>
               </div>
             </div>
