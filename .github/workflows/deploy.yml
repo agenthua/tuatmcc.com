@@ -117,12 +117,22 @@ jobs:
 
       - name: Setup | Get version ID
         id: get-version-id
-        run: |
-          version_id="$(bun wrangler versions list --json | jq -r '.[] | select(.annotations."workers/tag" == "${{ needs.deploy.outputs.version_tag }}") | .id')"
-          echo "version_id=${version_id}" >> $GITHUB_OUTPUT
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          VERSION_TAG: ${{ needs.deploy.outputs.version_tag }}
+        run: |
+          set -euo pipefail
+          # versions list は配列を返すので、最初の1件だけを安全に取り出す
+          version_id="$(bun wrangler versions list --json \
+            | jq -r --arg tag "$VERSION_TAG" 'map(select(.annotations["workers/tag"] == $tag)) | (.[0].id // empty)')"
+
+          if [ -z "$version_id" ]; then
+            echo "No version found for tag: ${VERSION_TAG}" >&2
+            exit 1
+          fi
+
+          echo "version_id=${version_id}" >> "$GITHUB_OUTPUT"
 
       - name: Run | Publish
         uses: cloudflare/wrangler-action@v3
