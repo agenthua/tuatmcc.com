@@ -41,13 +41,13 @@ const totalPages = pages.length;
 
   <WorkshopDrawer pages={pages} headings={headings} activePageId={page.id}>
     <div class="flex flex-1">
-      <main class="mx-auto flex w-fit max-w-full flex-col gap-4 p-4">
+      <main class="mx-auto flex w-4xl max-w-full flex-col gap-4 p-4">
         <div class="pt-navbar-with-margin pb-24">
           <h1 class="text-3xl font-bold">{page.data.title}</h1>
         </div>
         <article
           class:list={[
-            "prose dark:prose-invert overflow-hidden",
+            "prose dark:prose-invert max-w-none overflow-hidden",
             "prose-h1:border-l-12 prose-h1:border-primary prose-h1:pl-3 prose-h1:border-b-2 prose-h1:text-2xl",
             "prose-h2:border-l-8 prose-h2:border-primary prose-h2:pl-2 prose-h2:border-b-2",
             "prose-h3:border-primary prose-h3:border-l-4 prose-h3:pl-2",
