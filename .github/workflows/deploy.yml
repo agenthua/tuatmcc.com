@@ -125,9 +125,9 @@ jobs:
           VERSION_TAG: ${{ needs.deploy.outputs.version_tag }}
         run: |
           set -euo pipefail
-          # versions list は配列を返すので、最初の1件だけを安全に取り出す
+          # versions list は配列を返すので、最新の一見を取得する
           version_id="$(bun wrangler versions list --json \
-            | jq -r --arg tag "$VERSION_TAG" 'map(select(.annotations["workers/tag"] == $tag)) | (.[0].id // empty)')"
+            | jq -r --arg tag "$VERSION_TAG" 'map(select(.annotations["workers/tag"] == $tag)) | sort_by(.created_on) | (.[-1].id // empty)')"
 
           if [ -z "$version_id" ]; then
             echo "No version found for tag: ${VERSION_TAG}" >&2
