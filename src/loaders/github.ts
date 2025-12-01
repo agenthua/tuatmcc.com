@@ -30,7 +30,8 @@ export function github(
     !Array.isArray(patternOrOptions)
   ) {
     const { pattern, base: optBase, generateId } = patternOrOptions;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // Type assertion needed because TypeScript cannot infer the correct overload
+    // when generateId is optional. The types match Astro's GlobOptions interface.
     return glob({ pattern, base: optBase, generateId } as any);
   }
 

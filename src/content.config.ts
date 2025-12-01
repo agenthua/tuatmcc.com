@@ -19,7 +19,10 @@ function generatePostId({
     // e.g., ["posts", "2024-01-26-ascii-table", "index"] -> "2024-01-26-ascii-table"
     return parts.slice(1, -1).join("/");
   }
-  // Fallback: return original entry if unexpected format
+  // Fallback: log unexpected format and return original entry
+  console.warn(
+    `[generatePostId] Unexpected entry format: "${entry}". Expected "parent/folder/file".`,
+  );
   return entry;
 }
 
