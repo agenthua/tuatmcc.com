@@ -2,10 +2,43 @@ import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { glob } from "astro/loaders";
+
+interface GenerateIdOptions {
+  entry: string;
+  base: URL;
+  data: Record<string, unknown>;
+}
+
+type GenerateIdFunction = (options: GenerateIdOptions) => string;
+
+interface GithubLoaderOptions {
+  pattern: string | string[];
+  base: string;
+  generateId?: GenerateIdFunction;
+}
+
 // Wrap Astro's glob loader, keeping ./content in sync with the repo.
-export function github(pattern: string | string[], base: string) {
+export function github(
+  patternOrOptions: string | string[] | GithubLoaderOptions,
+  base?: string,
+) {
   ensureContentRepo();
-  return glob({ pattern, base });
+
+  // Support both old signature (pattern, base) and new signature (options object)
+  if (
+    typeof patternOrOptions === "object" &&
+    !Array.isArray(patternOrOptions)
+  ) {
+    const { pattern, base: optBase, generateId } = patternOrOptions;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return glob({ pattern, base: optBase, generateId } as any);
+  }
+
+  // Legacy signature - base is required for this path
+  if (!base) {
+    throw new Error("base is required when using the legacy signature");
+  }
+  return glob({ pattern: patternOrOptions, base });
 }
 
 const REPO_URL = "https://github.com/tuatmcc/hp-md-content.git";
